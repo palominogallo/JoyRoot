@@ -1,3 +1,13 @@
 Tools based on MINERvA Software 
 https://minerva.fnal.gov
 No comercial purposes
+
+*******
+1) Change setup.csh or setup.sh according to your directory path
+2) change on src/Makefile for
+Mac os x: 
+LDFLAGS += -shared -Wl,-install_name
+Linux gcc 4.6
+DFLAGS += -shared -Wl,-soname
+
+

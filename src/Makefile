@@ -4,7 +4,7 @@ ROOTLDFLAGS=`root-config --glibs`
 INCLUDE += -I$(JOYROOTROOT)/include
 # for shared libraries
 LDFLAGS += -shared -Wl,-install_name
-#LDFLAGS += -shared -Wl,-soname #gcc4.6
+#LDFLAGS += -shared -Wl,-soname
 OBJS = Plot1.o Utils1.o
 
 TARGET =libJOYROOT.so
