@@ -1,4 +1,5 @@
 #!/bin/bash
+# bash version
 
 if [ -z "$JOYROOTROOT" ]; then
 	echo " setting PlotUtils!! "
