@@ -330,12 +330,6 @@ void Plot1::set_root_env()
 	gStyle->SetOptFit(0);
 	gStyle->SetOptTitle(0);
 
-  // Set the size of the default canvas: 600x500 looks almost square.
-  //gStyle->SetCanvasDefH(500);
-  //gStyle->SetCanvasDefW(600);
-  //gStyle->SetCanvasDefX(10);
-  //gStyle->SetCanvasDefY(10);
-
   // Borders
   gStyle->SetCanvasBorderMode(0);
   gStyle->SetPadBorderMode(0);
@@ -359,17 +353,6 @@ void Plot1::set_root_env()
 	gStyle->SetTitleBorderSize(2);
 
 	TGaxis::SetMaxDigits(4);
-  // Rain Bow palette is used
-	/*
-   const Int_t NRGBs = 6;
-   const Int_t NCont = 150; 
-   Double_t stops[NRGBs] = { 0.00, 0.03, 0.12, 0.35, 0.70, 1.00 };
-   Double_t red[NRGBs]   = { 0.95, 0.70, 0.87, 0.90, 1.00, 0.20 };
-   Double_t green[NRGBs] = { 0.95, 0.70, 0.80, 0.50, 0.00, 0.10 };
-   Double_t blue[NRGBs]  = { 0.95, 0.70, 0.12, 0.00, 0.00, 0.50 };
-   TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
-   gStyle->SetNumberContours(NCont);
-	 */
 }
 
 // ====================================================================
@@ -387,12 +370,6 @@ void Plot1::set_root_stats()
 	gStyle->SetOptFit(0);
 	gStyle->SetOptTitle(0);
 
-  // Set the size of the default canvas: 600x500 looks almost square.
-  //gStyle->SetCanvasDefH(500);
-  //gStyle->SetCanvasDefW(600);
-  //gStyle->SetCanvasDefX(10);
-  //gStyle->SetCanvasDefY(10);
-
   // Borders
   gStyle->SetCanvasBorderMode(0);
   gStyle->SetPadBorderMode(0);
@@ -416,18 +393,7 @@ void Plot1::set_root_stats()
 	gStyle->SetTitleBorderSize(2);
 
 	TGaxis::SetMaxDigits(4);
-  // Rain Bow palette is used
-	gStyle->SetPalette(1);
-	/*
-   const Int_t NRGBs = 6;
-   const Int_t NCont = 150; 
-   Double_t stops[NRGBs] = { 0.00, 0.03, 0.12, 0.35, 0.70, 1.00 };
-   Double_t red[NRGBs]   = { 0.95, 0.70, 0.87, 0.90, 1.00, 0.20 };
-   Double_t green[NRGBs] = { 0.95, 0.70, 0.80, 0.50, 0.00, 0.10 };
-   Double_t blue[NRGBs]  = { 0.95, 0.70, 0.12, 0.00, 0.00, 0.50 };
-   TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
-   gStyle->SetNumberContours(NCont);
-	 */
+
 }
 
 // ====================================================================
@@ -448,7 +414,7 @@ void Plot1::set_gradient_color()
 // =================================================
 // =================================================
 // ====================================================================
-// add_plot_laberl
+// add_plot_label
 // ====================================================================
 void Plot1::add_plot_label( TString label, Double_t x, Double_t y, Double_t size, Int_t color, Int_t font, Int_t align, Double_t angle ){
 
@@ -462,69 +428,9 @@ void Plot1::add_plot_label( TString label, Double_t x, Double_t y, Double_t size
 	latex->Draw();
 }
 
-// ====================================================================
-// decode position
-// ====================================================================
-
-void Plot1::decode_position( std::string opts, Double_t size, Int_t &align, Double_t &x_label, Double_t &y_label ){
-
-  // default is TC (top center)
-  align = 23;
-  x_label = 0.5;
-  y_label = 1 - gStyle->GetPadTopMargin() - size/2.;
-
-  if( opts == "TR" ){
-    align = 33;
-    x_label = 1 - gStyle->GetPadRightMargin() - 0.05;
-  }else if( opts == "TL" ){
-    align = 13;
-    x_label = gStyle->GetPadLeftMargin() + 0.05;
-  }else if( opts == "BR" ){
-    align = 31;
-    x_label = 1 - gStyle->GetPadRightMargin() - 0.05;
-    y_label = gStyle->GetPadBottomMargin() + size/2.;
-  }else if( opts == "BL" ){
-    align = 11;
-    x_label = gStyle->GetPadLeftMargin() + 0.05;
-    y_label = gStyle->GetPadBottomMargin() + size/2.;
-  }else if( opts == "BC" ){
-    align = 21;
-    x_label = 0.5;
-    y_label = gStyle->GetPadBottomMargin() + size/2.;
-  }
-
-}
-
-void Plot1::decode_legend_position( Double_t &x1, Double_t &y1, Double_t &x2, Double_t &y2, std::string opts, Int_t nHists,
-    																		const Int_t longestTitleSize , Double_t size ) {
-
-  //start by using decode_position
-  Int_t align = 22;
-  decode_position( opts, size, align, x1, y1 );
-
-  //how tall does the legend need to be
-  const Double_t yspace = def::height_nspaces_per_hist * size * nHists;
-
-  //how wide does the legend need to be?
-  const Double_t xspace_marker = .06;  //~space taken up by marker
-  const Double_t xspace = xspace_marker + longestTitleSize*def::width_xspace_per_letter*size; //x extent necessary
-
-  //set vertical position
-  if( align % 10 == 2 ) //center should be at current y_legend
-    y1 -= yspace / 2.; 
-  else if( align % 10 == 3 ) //right edge should be at current y_legend
-    y1 -= yspace;
-
-  //set horizontal position
-  if( align / 10 == 2 ) //center should be at current x_legend
-    x1 -= xspace / 2.; 
-  else if( align / 10 == 3 ) //top edge should be at current x_legend
-    x1 -= xspace;
-
-  x2 = x1 + xspace;
-  y2 = y1 + yspace;
-}
-
+//==========================================================
+// add_histo_title
+//==========================================================
 void Plot1::add_histo_title( TString title, Double_t my_title_size, Int_t my_title_font ){
 
   add_plot_label(title, 0.5, 1-gStyle->GetPadTopMargin()+0.02, my_title_size, 1, my_title_font, 21);
@@ -706,6 +612,100 @@ TLegend* Plot1::getLegendTC()
   return legend;
 }
 
+//==========================================================
+// Get 1 stat text box
+//==========================================================
+void Plot1::draw1Stat(const TH1F *h1, Int_t Kolor)
+{
+  Float_t x1, x2, y1, y2;
+  y1 = 1-gStyle->GetPadTopMargin()-0.15;
+  y2 = 1-gStyle->GetPadTopMargin();
+  x1 = 1-gStyle->GetPadLeftMargin()-0.18;
+  x2 = 1-gStyle->GetPadRightMargin()+0.001;
+  TPaveText *pt1 = new TPaveText(x1,y1,x2,y2,"NDC NB");
+  pt1->SetTextColor(Kolor);
+  pt1->AddText( Form("Mean %.3f", h1->GetMean()) );
+  pt1->AddText( Form("RMS %.3f", h1->GetRMS()) );
+  pt1->AddText( Form("Entries %.0f", h1->GetEntries()) );
+  gPad->Update();
+
+}
+
+//==========================================================
+// get 2 stat text boxes
+//==========================================================
+void Plot1::draw2Stat(const TH1F *h1, const TH1F *h2, Int_t Kolor1, Int_t Kolor2)
+{
+  Float_t x1, x2, y1, y2;
+
+  // First histogram (MC)
+  y1 = 1-gStyle->GetPadTopMargin()-0.15;
+  y2 = 1-gStyle->GetPadTopMargin();
+  x1 = 1-gStyle->GetPadLeftMargin()-0.18;
+  x2 = 1-gStyle->GetPadRightMargin()+0.001;
+  TPaveText *pt1a = new TPaveText(x1,y1,x2-0.10,y2);
+  pt1a->SetOption("NB+NDC");
+  pt1a->SetBorderSize(0);
+  pt1a->SetTextColor(Kolor1);
+  pt1a->SetFillStyle(0);
+  pt1a->SetTextSize(0.04);
+  pt1a->SetTextFont(42);
+  pt1a->SetTextAlign(12);
+  pt1a->AddText( "Mean" );
+  pt1a->AddText( "RMS" );
+  pt1a->AddText( "Entries" );
+  pt1a->Draw();
+
+  TPaveText *pt1b = new TPaveText(x1+0.10,y1,x2,y2);
+  pt1b->SetOption("NB+NDC");
+  pt1b->SetBorderSize(0);
+  pt1b->SetTextColor(Kolor1);
+  pt1b->SetFillStyle(0);;
+  pt1b->SetTextSize(0.04);
+  pt1b->SetTextFont(42);
+  pt1b->SetTextAlign(32);
+  pt1b->AddText( Form("%.3f", h1->GetMean()) );
+  pt1b->AddText( Form("%.3f", h1->GetRMS()) );
+  pt1b->AddText( Form("%.0f", h1->GetEntries()) );
+  pt1b->Draw();
+  gPad->Update();
+
+  // second histogram (Data)
+  y1 = 1-gStyle->GetPadTopMargin()-0.30;
+  y2 = 1-gStyle->GetPadTopMargin()-0.15;
+  x1 = 1-gStyle->GetPadLeftMargin()-0.18;
+  x2 = 1-gStyle->GetPadRightMargin()+0.001;
+  TPaveText *pt2a = new TPaveText(x1,y1,x2-0.10,y2);
+  pt2a->SetOption("NB+NDC");
+  pt2a->SetBorderSize(0);
+  pt2a->SetTextColor(Kolor2);
+  pt2a->SetFillStyle(0);
+  pt2a->SetTextSize(0.04);
+  pt2a->SetTextFont(42);
+  pt2a->SetTextAlign(12);
+  pt2a->AddText( "Mean" );
+  pt2a->AddText( "RMS" );
+  pt2a->AddText( "Entries" );
+  pt2a->Draw("same");
+
+  y1 = 1-gStyle->GetPadTopMargin()-0.30;
+  y2 = 1-gStyle->GetPadTopMargin()-0.15;
+  x1 = 1-gStyle->GetPadLeftMargin()-0.18;
+  x2 = 1-gStyle->GetPadRightMargin()+0.001;
+  TPaveText *pt2b = new TPaveText(x1+0.10,y1,x2,y2);
+  pt2b->SetOption("NB+NDC");
+  pt2b->SetBorderSize(0);
+  pt2b->SetTextColor(Kolor2);
+  pt2b->SetFillStyle(0);
+  pt2b->SetTextSize(0.04);
+  pt2b->SetTextFont(42);
+  pt2b->SetTextAlign(32);  pt2b->AddText( Form("%.3f", h2->GetMean()) );
+  pt2b->AddText( Form("%.3f", h2->GetRMS()) );
+  pt2b->AddText( Form("%.0f", h2->GetEntries()) );
+  pt2b->Draw("same");
+  gPad->Update();
+
+}
 
 #endif
 
