@@ -323,6 +323,7 @@ void Plot1::draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t y
 // ====================================================================
 void Plot1::set_root_env()
 {
+  cout << " Setting root env" << endl;
 	//gStyle->SetOptStat("nmre");
 	gStyle->SetOptStat(000);
 	gStyle->SetStatX(.99);
@@ -360,7 +361,6 @@ void Plot1::set_root_env()
 
 	TGaxis::SetMaxDigits(4);
   // Rain Bow palette is used
-	gStyle->SetPalette(1);
 	/*
    const Int_t NRGBs = 6;
    const Int_t NCont = 150; 

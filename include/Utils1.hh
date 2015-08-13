@@ -28,8 +28,8 @@ class Utils1 {
     static Bool_t getFloatMedian( std::vector<Float_t> &v, Float_t &median );
 
     //! Book histo
-    static TH1F* bookTH1F( TString name, TString title, Int_t nbins, Float_t xmin, Float_t xmax, Bool_t binSize=false );
-    static TH1D* bookTH1D( TString name, TString title, Int_t nbins, Float_t xmin, Float_t xmax, Bool_t binSize=false );
+    static TH1F* bookTH1F( TString name, TString title, Int_t nbins, Float_t xmin, Float_t xmax, Bool_t binSize=true );
+    static TH1D* bookTH1D( TString name, TString title, Int_t nbins, Float_t xmin, Float_t xmax, Bool_t binSize=true );
     static TH2F* bookTH2F( TString name, TString title, Int_t xbins, Float_t xmin, Float_t xmax, Int_t ybins, Float_t ymin, Float_t ymax );
     static TH2D* bookTH2D( TString name, TString title, Int_t xbins, Float_t xmin, Float_t xmax, Int_t ybins, Float_t ymin, Float_t ymax );
     static TProfile* bookTProfile( TString name, TString title, Int_t nbins, Float_t xmin, Float_t xmax );

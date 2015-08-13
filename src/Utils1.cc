@@ -30,6 +30,10 @@ void Utils1::MyPrint( TCanvas *c, TString motherdirectory, TString localdirector
   c->Print( Form( "%s/plots/%s/pdf/%s.pdf",motherdirectory.c_str(), localdirectory.c_str(), name.c_str() ) );
   c->Print( Form( "%s/plots/%s/C/%s.C", motherdirectory.c_str(), localdirectory.c_str(), name.c_str() ) );
   */
+  gSystem->Exec("mkdir -p "+ motherdirectory+"/plots/"+localdirectory);
+  gSystem->Exec("mkdir -p "+ motherdirectory+"/plots/"+localdirectory+"/eps/");
+  gSystem->Exec("mkdir -p "+ motherdirectory+"/plots/"+localdirectory+"/C/");
+
   c->Print( motherdirectory+TString("/plots/")+localdirectory+TString("/")+name+TString(".png") );
   c->Print( motherdirectory+TString("/plots/")+localdirectory+TString("/eps/")+name+TString(".eps") );
   c->Print( motherdirectory+TString("/plots/")+localdirectory+TString("/C/")+name+TString(".C") );
@@ -165,9 +169,9 @@ TH1F *Utils1::bookTH1F( TString name, TString title, Int_t nbins, Float_t xmin, 
   TH1F *h = new TH1F( name, title, nbins, xmin, xmax );
 	h->SetXTitle( Form("%s %s",h->GetXaxis()->GetTitle(),h->GetZaxis()->GetTitle() ) ); // units
 	if ( binSize)
-		h->SetYTitle( Form("%s",h->GetYaxis()->GetTitle() ) );
-	else
 		h->SetYTitle( Form("%s%.2f %s",h->GetYaxis()->GetTitle(), (xmax-xmin)/nbins, h->GetZaxis()->GetTitle() ) );
+	else
+		h->SetYTitle( Form("%s",h->GetYaxis()->GetTitle() ) );
   return h;
 }
 //==========================================================
@@ -178,9 +182,9 @@ TH1D *Utils1::bookTH1D( TString name, TString title, Int_t nbins, Float_t xmin, 
   TH1D *h = new TH1D( name, title, nbins, xmin, xmax );
   h->SetXTitle( Form("%s %s",h->GetXaxis()->GetTitle(),h->GetZaxis()->GetTitle() ) ); // units
 	if ( binSize)
-		h->SetYTitle( Form("%s",h->GetYaxis()->GetTitle() ) );
-	else
 		h->SetYTitle( Form("%s%.2f %s",h->GetYaxis()->GetTitle(), (xmax-xmin)/nbins, h->GetZaxis()->GetTitle() ) );
+	else
+		h->SetYTitle( Form("%s",h->GetYaxis()->GetTitle() ) );
   return h;
 }
 //==========================================================
