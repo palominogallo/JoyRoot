@@ -35,12 +35,12 @@ class Plot1 {
     static TCanvas* getCanvas( TString name, TString title );
     static TCanvas* getCanvasSQ( TString name, TString title );
 
-    static TLegend* getLegend1TL();
-    static TLegend* getLegend2TL();
-    static TLegend* getLegend3TL();
-    static TLegend* getLegend1TR();
-    static TLegend* getLegend2TR();
-    static TLegend* getLegend3TR();
+    static TLegend* getLegend1TL( Float_t text_zize = 0.044 );
+    static TLegend* getLegend2TL( Float_t text_size = 0.044 );
+    static TLegend* getLegend3TL( Float_t text_size = 0.044 );
+    static TLegend* getLegend1TR( Float_t text_size = 0.044 );
+    static TLegend* getLegend2TR( Float_t text_size = 0.044 );
+    static TLegend* getLegend3TR( Float_t text_size = 0.044 );
     static TLegend* getLegend2BL();
     static TLegend* getLegend2BR();
     static TLegend* getLegendTC();

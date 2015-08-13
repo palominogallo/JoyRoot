@@ -323,7 +323,6 @@ void Plot1::draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t y
 // ====================================================================
 void Plot1::set_root_env()
 {
-  cout << " Setting root env" << endl;
 	//gStyle->SetOptStat("nmre");
 	gStyle->SetOptStat(000);
 	gStyle->SetStatX(.99);
@@ -552,7 +551,7 @@ TCanvas* Plot1::getCanvasSQ(TString name, TString title)
 //==========================================================
 // Legend Top Right
 //==========================================================
-TLegend* Plot1::getLegend1TR()
+TLegend* Plot1::getLegend1TR( Float_t text_size )
 {
   Double_t x1 = 0.8;
   Double_t y1 = 0.8;
@@ -561,13 +560,13 @@ TLegend* Plot1::getLegend1TR()
   TLegend* legend = new TLegend(x1,y1,x2,y2);
   legend->SetFillColor(kWhite);
   legend->SetLineColor(kBlack);
-  legend->SetTextSize(0.044);
+  legend->SetTextSize(text_size);
   return legend;
 }
 //==========================================================
 // Legend Top Left
 //==========================================================
-TLegend* Plot1::getLegend1TL()
+TLegend* Plot1::getLegend1TL( Float_t text_size )
 {
   Double_t x1 = gStyle->GetPadLeftMargin() + 0.0007;
   Double_t y1 = 0.80;
@@ -576,13 +575,13 @@ TLegend* Plot1::getLegend1TL()
   TLegend* legend = new TLegend(x1,y1,x2,y2);
   legend->SetFillColor(kWhite);
   legend->SetLineColor(kBlack);
-  legend->SetTextSize(0.044);
+  legend->SetTextSize(text_size);
   return legend;
 }
 //==========================================================
 // Legend Top Right
 //==========================================================
-TLegend* Plot1::getLegend2TR()
+TLegend* Plot1::getLegend2TR( Float_t text_size )
 {
   Double_t x1 = 0.7;
   Double_t y1 = 0.70;
@@ -591,13 +590,13 @@ TLegend* Plot1::getLegend2TR()
   TLegend* legend = new TLegend(x1,y1,x2,y2);
   legend->SetFillColor(kWhite);
   legend->SetLineColor(kBlack);
-  legend->SetTextSize(0.044);
+  legend->SetTextSize(text_size);
   return legend;
 }
 //==========================================================
 // Legend Top Left
 //==========================================================
-TLegend* Plot1::getLegend2TL()
+TLegend* Plot1::getLegend2TL( Float_t text_size )
 {
   Double_t x1 = gStyle->GetPadLeftMargin() + 0.001;
   Double_t y1 = 0.7;
@@ -606,7 +605,7 @@ TLegend* Plot1::getLegend2TL()
   TLegend* legend = new TLegend(x1,y1,x2,y2);
   legend->SetFillColor(kWhite);
   legend->SetLineColor(kBlack);
-  legend->SetTextSize(0.044);
+  legend->SetTextSize(text_size);
   return legend;
 }
 
@@ -614,7 +613,7 @@ TLegend* Plot1::getLegend2TL()
 //==========================================================
 // Legend Top Right
 //==========================================================
-TLegend* Plot1::getLegend3TR()
+TLegend* Plot1::getLegend3TR( Float_t text_size )
 {
   Double_t x1 = 0.6;
   Double_t y1 = 0.6;
@@ -623,13 +622,13 @@ TLegend* Plot1::getLegend3TR()
   TLegend* legend = new TLegend(x1,y1,x2,y2);
   legend->SetFillColor(kWhite);
   //legend->SetLineColor(kBlack);
-  legend->SetTextSize(0.044);
+  legend->SetTextSize(text_size);
   return legend;
 }
 //==========================================================
 //// Legend Top Left
 ////==========================================================
-TLegend* Plot1::getLegend3TL()
+TLegend* Plot1::getLegend3TL( Float_t text_size )
 {
   Double_t x1 = gStyle->GetPadLeftMargin() + 0.0005;
   Double_t y1 = 0.60;
@@ -638,7 +637,7 @@ TLegend* Plot1::getLegend3TL()
   TLegend* legend = new TLegend(x1,y1,x2,y2);
   legend->SetFillColor(kWhite);
   legend->SetLineColor(kBlack);
-  legend->SetTextSize(0.044);
+  legend->SetTextSize(text_size);
   return legend;
 }
 
