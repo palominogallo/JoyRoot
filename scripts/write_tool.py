@@ -11,22 +11,20 @@ def write_top_file( filepath, filename, extension ):
         filet.write("#include \"%s.hh\"\n\n" % filename)
     filet.close()
 
-def write_bottom_file( filepath, filename, extension ):
-    fileb = open(filepath+filename+"."+extension, 'a')
-    isclass =  "Histos" not in filename and "Plots" not in filename
-    if extension == 'hh':
-        fileb.write( "};\n\n" )
-    if extension == 'cc':
-        fileb.write( "}\n\n" )
-    if isclass:
-        fileb.write( "#endif" )
-    fileb.close()
+def write_function_comment( filename, function_name ):
+    filename.write( "//=================================================================\n" )
+    filename.write( "// %s\n" % function_name )
+    filename.write( "//=================================================================\n" )
+
+def write_mainfunction_comment( filename, function_name ):
+    filename.write( "//=================================================================\n" )
+    filename.write( "// %s\n" % function_name )
+    filename.write( "//\n" )
+    filename.write( "//=================================================================\n" )
 
 def write_help( filepath, filename ):
     fileh = open( filepath+filename+".cc", "a")
-    fileh.write( "//=================================================================\n" )
-    fileh.write( "// showHelp\n" )
-    fileh.write( "//=================================================================\n" )
+    write_function_comment( fileh, "showHelp" )
     fileh.write( "void showHelp( TString program_name )\n{\n" )
     fileh.write( "\tcout<<\"Usage:\t\t\"<< program_name <<\" [-option] [argument]\" << endl;\n" )
     fileh.write( "\tcout<<\"option:\t\t\"<<\"-i input directory \" << endl;\n")
@@ -38,10 +36,7 @@ def write_help( filepath, filename ):
 
 def write_main( filepath, filename ):
     filem = open( filepath+filename+".cc", "a")
-    filem.write( "//=================================================================\n" )
-    filem.write( "// main\n" )
-    filem.write( "//\n" )
-    filem.write( "//=================================================================\n" )
+    write_mainfunction_comment( filem, "main" )
     filem.write( "int main(int argc, char **argv)\n{\n")
     filem.write( "\tTString dPDFin;\n" )
     filem.write( "\tTStrint dPDFout;\n\n" )
@@ -54,4 +49,5 @@ def write_main( filepath, filename ):
     filem.write( "\t\t\tdefault  : showHelp(argv[0]);\n\t\t}\n\t}\n")
     filem.write( "\treturn %s(dPDFin, dPDFout);\n}" % filename )
     filem.close()
+
 

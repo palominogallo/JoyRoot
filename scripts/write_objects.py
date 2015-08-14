@@ -7,7 +7,6 @@ def write_class( filepath, filename ):
     fileclass.write( "%s::%s(){\n}\n\n" % (filename,filename) )
     fileclass.write( "%s::~%s(){\n}\n\n" % (filename,filename) )
     fileclass.close()
-    write_tool.write_bottom_file( filepath, filename, "cc" )
 
 def write_header( filepath, filename ):
 
@@ -20,18 +19,52 @@ def write_header( filepath, filename ):
     fileclass.write( "\t\tvirtual ~%s();\n\n" % filename )
     fileclass.write( "\tpublic:\n\n" )
     fileclass.write( "\t\t// Write members here\n\n" )
+    fileclass.write( "};\n\n" )
+    fileclass.write( "#endif\n" )
     fileclass.close()
-    write_tool.write_bottom_file( filepath, filename, "hh" )
+
+def write_rootclass( filepath, filename ):
+
+    write_tool.write_top_file( filepath, filename, "cc" )
+    fileclass = open(filepath+filename+".cc", 'a')
+    write_tool.write_function_comment( fileclass, "Constructor" )
+    fileclass.write( "%s::%s( TTree *tree )\n{\n" % (filename,filename) )
+    fileclass.write( "\tmTree = tree;\n\n" )
+    fileclass.write( "\tmTree->SetBranchAddress(\" \", , );\n\n" )
+    fileclass.write( "\tmNevents = mTree->GetEntries();\n}\n\n" )
+    write_tool.write_function_comment( fileclass, "Destructor" )
+    fileclass.write( "%s::~%s()\n{\n\tdelete mTree->GetCurrentFile();\n}\n\n" % (filename,filename) )
+    write_tool.write_function_comment( fileclass, "GetEntry" )
+    fileclass.write( "%s::GetEntry( Long64_t entry )\n{\n" % filename )
+    fileclass.write( "\treturn mTree->GetEntry( entry );\n}\n\n" )
+    fileclass.close()
+
+def write_rootheader( filepath, filename ):
+
+    write_tool.write_top_file( filepath, filename, "hh" )
+    fileclass = open(filepath+filename+".hh", 'a')
+    fileclass.write( "class %s\n{\n\n \tpublic:\n\n" % filename )
+    fileclass.write( "\t\t//! Default Constructor\n" )
+    fileclass.write( "\t\t%s();\n\n" % filename )
+    fileclass.write( "\t\t//! Destructor\n" )
+    fileclass.write( "\t\tvirtual ~%s();\n\n" % filename )
+    fileclass.write( "\tpublic:\n\n" )
+    fileclass.write( "\t\tTTree\t\t*mTree;\n" )
+    fileclass.write( "\t\tLong64_t\t\tmNevents;\n\n" )
+    fileclass.write( "\t\t// Declaration of leaf types\n\n" )
+    fileclass.write( "\t\t// List of branches\n\n" )
+    fileclass.write( "\t\tInt_t GetEntry( Long64_t entry );\n" )
+    fileclass.write( "\t\tinline Long64_t GetEntries(){ return mNevents; };\n" )
+    fileclass.write( "};\n\n" )
+    fileclass.write( "#endif\n" )
+    fileclass.close()
 
 def write_histos( filepath, classname, filename ):
 
     write_tool.write_top_file( filepath, filename+"Histos", "cc" )
     filehistos = open( filepath+filename+"Histos.cc", "a" )
     filehistos.write("#include \"%s.hh\"\n\n" % classname )
-    filehistos.write( "//=================================================================\n" )
-    filehistos.write( "// %sHistos\n" % filename )
-    filehistos.write( "//\n" )
-    filehistos.write( "//=================================================================\n" )
+    write_tool.write_mainfunction_comment( filehistos, "%sHistos" % filename )
     filehistos.write( "int %sHistos( TString dPDFin, TString dPDFout )\n{\n" % filename )
     filehistos.write( "\t// Create file to store histograms\n" )
     filehistos.write( "\tTFile *rootfile = new TFile( dPDFout+\"rootfiles/out_name.root\",\"RECREATE\");\n" )
