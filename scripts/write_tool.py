@@ -45,7 +45,7 @@ def write_main( filepath, filename ):
     filem.write( "\twhile ( ( opt = getopt( argc, argv, \"i:o:\") ) != -1 )\n\t{\n" )
     filem.write( "\t\tswitch(opt)\n\t\t{\n ")
     filem.write( "\t\t\tcase \'i\': dPDFin = TString(optarg); break;\n")
-    filem.write( "\t\t\tcase \'o\': dPDFin = TString(optarg); break;\n")
+    filem.write( "\t\t\tcase \'o\': dPDFout = TString(optarg); break;\n")
     filem.write( "\t\t\tdefault  : showHelp(argv[0]);\n\t\t}\n\t}\n")
     filem.write( "\treturn %s(dPDFin, dPDFout);\n}" % filename )
     filem.close()
