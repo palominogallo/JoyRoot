@@ -39,7 +39,7 @@ def write_main( filepath, filename ):
     write_mainfunction_comment( filem, "main" )
     filem.write( "int main(int argc, char **argv)\n{\n")
     filem.write( "\tTString dPDFin;\n" )
-    filem.write( "\tTStrint dPDFout;\n\n" )
+    filem.write( "\tTString dPDFout;\n\n" )
     filem.write( "\tif ( argc == 1 ) showHelp( TString(argv[0]) );\n" )
     filem.write( "\tint opt;\n" )
     filem.write( "\twhile ( ( opt = getopt( argc, argv, \"i:o:\") ) != -1 )\n\t{\n" )

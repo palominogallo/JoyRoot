@@ -14,9 +14,17 @@ def make_skeleton():
     os.system("mkdir -p %s/%s/make_plots" % (workpath, dirname) )
     os.system("mkdir -p %s/%s/rootfiles" % (workpath, dirname) )
     os.system("mkdir -p %s/%s/plots" % (workpath, dirname) )
-    write_objects.write_rootclass(workpath+"/"+dirname+"/src/", classname)
-    write_objects.write_rootheader(workpath+"/"+dirname+"/include/", classname)
-    write_objects.write_histos(workpath+"/"+dirname+"/make_histos/", classname, "Basic" )
+    write_objects.write_rootclass( workpath+"/"+dirname+"/src/", classname )
+    write_objects.write_rootheader( workpath+"/"+dirname+"/include/", classname )
+    write_objects.write_histos( workpath+"/"+dirname+"/make_histos/", classname, "Basic" )
+    write_objects.write_plots( workpath+"/"+dirname+"/make_plots/", classname, "Basic" )
+    write_objects.write_makefile(workpath, dirname, classname )
+
+    joypath0 = sys.argv[0].split("/")
+    joypath0.remove("makeAnaSkeleton.py")
+    joypath0.remove("scripts")
+    joypath = "/".join(joypath0)
+    write_objects.write_setup(joypath, workpath, dirname, classname )
 
 def showHelp():
     print "usage: python %s <work path> <directory name> <classname>" % sys.argv[0]
