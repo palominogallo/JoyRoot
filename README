@@ -22,3 +22,6 @@ instead of
 Plot1 *p1;
 p1->bookTH1F(*****);
 
+****
+END
+
