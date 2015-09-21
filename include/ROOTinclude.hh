@@ -49,6 +49,7 @@ using std::pair;
 #include <TBranch.h>
 #include <TH1.h>
 #include <TH2.h>
+#include <TH2Poly.h>
 #include <TH3.h>
 #include <TPostScript.h>
 #include <TLatex.h>
