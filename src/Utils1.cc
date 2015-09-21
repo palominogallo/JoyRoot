@@ -32,10 +32,11 @@ void Utils1::MyPrint( TCanvas *c, TString motherdirectory, TString localdirector
   */
   gSystem->Exec("mkdir -p "+ motherdirectory+"/plots/"+localdirectory);
   gSystem->Exec("mkdir -p "+ motherdirectory+"/plots/"+localdirectory+"/eps/");
+  gSystem->Exec("mkdir -p "+ motherdirectory+"/plots/"+localdirectory+"/pdf/");
   gSystem->Exec("mkdir -p "+ motherdirectory+"/plots/"+localdirectory+"/C/");
 
-  c->Print( motherdirectory+TString("/plots/")+localdirectory+TString("/")+name+TString(".png") );
   c->Print( motherdirectory+TString("/plots/")+localdirectory+TString("/eps/")+name+TString(".eps") );
+  c->Print( motherdirectory+TString("/plots/")+localdirectory+TString("/pdf/")+name+TString(".pdf") );
   c->Print( motherdirectory+TString("/plots/")+localdirectory+TString("/C/")+name+TString(".C") );
   gErrorIgnoreLevel = oldVerbosity;
 }
