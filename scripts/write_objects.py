@@ -90,7 +90,7 @@ def write_plots( filepath, classname, filename ):
     write_tool.write_top_file( filepath, filename+"Plots", "cc" )
     filehistos = open( filepath+filename+"Plots.cc", "a" )
     filehistos.write("#include \"%s.hh\"\n\n" % classname )
-    write_tool.write_mainfunction_comment( filehistos, "%sHistos" % filename )
+    write_tool.write_mainfunction_comment( filehistos, "%sPlots" % filename )
     filehistos.write( "int %sPlots( TString dPDFin, TString dPDFout )\n{\n" % filename )
     filehistos.write( "\t// Create file to store histograms\n" )
     filehistos.write( "\tTFile *rootfile = new TFile( dPDFin+\"rootfiles/out_name.root\");\n" )
