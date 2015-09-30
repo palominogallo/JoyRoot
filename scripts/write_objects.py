@@ -89,6 +89,8 @@ def write_plots( filepath, classname, filename ):
 
     write_tool.write_top_file( filepath, filename+"Plots", "cc" )
     filehistos = open( filepath+filename+"Plots.cc", "a" )
+    filehistos.write("#include <Plot1.hh>\n" )
+    filehistos.write("#include <Utils1.hh>\n\n" )
     write_tool.write_mainfunction_comment( filehistos, "%sPlots" % filename )
     filehistos.write( "int %sPlots( TString dirin, TString dirout )\n{\n" % filename )
     filehistos.write( "\t// Create file to store histograms\n" )
