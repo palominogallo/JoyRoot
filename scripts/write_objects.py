@@ -89,7 +89,6 @@ def write_plots( filepath, classname, filename ):
 
     write_tool.write_top_file( filepath, filename+"Plots", "cc" )
     filehistos = open( filepath+filename+"Plots.cc", "a" )
-    filehistos.write("#include \"%s.hh\"\n\n" % classname )
     write_tool.write_mainfunction_comment( filehistos, "%sPlots" % filename )
     filehistos.write( "int %sPlots( TString dirin, TString dirout )\n{\n" % filename )
     filehistos.write( "\t// Create file to store histograms\n" )
@@ -164,7 +163,33 @@ def write_makefile( path, dirname, classname  ):
     fileplom.write( "clean:\n\t rm -f $(BINARIES) $(TARGETS)" )
     fileplom.close()
 
-def write_setup( joypath, path, dirname, classname  ):
+
+def write_makefile2( path, dirname ):
+
+    filem = open( path+"/"+dirname+"/Makefile", "w" )
+    filem.write("all:\n")
+    filem.write("\tmake -C make_plots\n\n")
+    filem.write("clean:\n")
+    filem.write("\tmake -C make_plots clean\n")
+    filem.close()
+
+    fileplom = open( path+"/"+dirname+"/make_plots/Makefile", "w" )
+    fileplom.write( "CXX = g++\n" )
+    fileplom.write( "CXXFLAGS = -c -g -Wall -fPIC `root-config --cflags`\n")
+    fileplom.write( "ROOTLDFLAGS =  `root-config --glibs`\n" )
+    fileplom.write( "INCLUDE += -I$(JOYROOTROOT)/include -I$(%sROOT)/include\n" % dirname.upper() )
+    fileplom.write( "LDLIBS += -L$(JOYROOTROOT)/lib -lJOYROOT\n\n")
+    fileplom.write( "TARGETS = BasicPlots.o\n" )
+    fileplom.write( "BINARIES = $(TARGETS:.o=)\n\n")
+    fileplom.write( "all: $(TARGETS) $(BINARIES)\n\n" )
+    fileplom.write( "%: %.o\n" )
+    fileplom.write( "\t$(CXX) $(ROOTLDFLAGS) $(INCLUDE) $(LDLIBS) $< -o $@\n\n")
+    fileplom.write( "%.o: %.cc\n" )
+    fileplom.write( "\t $(CXX) $(CXXFLAGS) $(INCLUDE) $< -o $@\n\n")
+    fileplom.write( "clean:\n\t rm -f $(BINARIES) $(TARGETS)" )
+    fileplom.close()
+
+def write_setup( joypath, path, dirname ):
     fileset = open( path+"/"+dirname+"/setup.sh", "w" )
     fileset.write( "#!/bin/bash\n\n" )
     fileset.write( "source %s/setup.sh\n\n" % joypath )
