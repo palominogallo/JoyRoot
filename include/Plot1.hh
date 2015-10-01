@@ -26,11 +26,8 @@ class Plot1 {
 		static void set_root_env();
 		static void set_root_stats();
 		static void set_gradient_color();
-		//static void decode_position( std::string opts, Double_t size, Int_t &align, Double_t &x_label, Double_t &y_label );
-		//static void decode_legend_position( Double_t &x1, Double_t &y1, Double_t &x2, Double_t &y2, std::string opts, Int_t nHists,
-    //		 												const Int_t longestTitleSize , Double_t size );
 		static void add_histo_title( TString title, Double_t my_title_size = 0.05, Int_t my_title_font = 62 );
-		static void add_plot_label( TString label, Double_t x, Double_t y, Double_t size = 0.05, Int_t color = 1, Int_t font = 62, Int_t align = 22, Double_t angle = 0 );
+		static void add_plot_label( TString label, Double_t x, Double_t y, Double_t size = 0.05, Int_t color = 1, Int_t font = 62, Int_t align = 22, Double_t angle = 0, bool ndc = true );
 
     static TCanvas* getCanvas( TString name, TString title );
     static TCanvas* getCanvasSQ( TString name, TString title );
@@ -49,12 +46,11 @@ class Plot1 {
     static void draw2Stat(const TH1F *h1, const TH1F *h2, Int_t Kolor1, Int_t Kolor2);
 
 // Advanced
-    static void draw_line( Double_t xmin, Double_t xmax, Double_t ymin, Double_t ymax, Int_t color=0 );
-    static void draw_horizontal_line( Double_t x, Double_t ymin, Double_t ymax, Int_t color=0 );
-    static void draw_vertical_line( Double_t y, Double_t xmin, Double_t xmax, Int_t color=0 );
-    static void draw_arrow( Double_t x1, Double_t y1, Double_t x2, Double_t y2, Int_t color=0, Float_t size=.04, Option_t *kind="|>" );
-    static void draw_cut_1L( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, Int_t color=0, Float_t size=.04 );
-    static void draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, Int_t color=0, Float_t size=.04 );
+    static void draw_horizontal_line( Double_t x, Double_t ymin, Double_t ymax, bool ndc=true, TLine *line=NULL);
+    static void draw_vertical_line( Double_t y, Double_t xmin, Double_t xmax, bool ndc=true, TLine *line=NULL );
+    static void draw_arrow( Double_t x1, Double_t y1, Double_t x2, Double_t y2, Option_t *kind="|>", bool ndc=true, TLine *line=NULL );
+    static void draw_cut_1L( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, bool ndc = true, TLine *line=NULL );
+    static void draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, bool ndc = true, TLine *line=NULL );
 
 };
 

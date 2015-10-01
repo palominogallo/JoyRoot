@@ -249,74 +249,87 @@ void Plot1::set_axis( THStack *h )
 	h->GetXaxis()->CenterTitle(true);
 	h->GetYaxis()->CenterTitle(true);
 }
-// ====================================================================
-// draw_line
-// ====================================================================
-void Plot1::draw_line( Double_t xmin, Double_t xmax, Double_t ymin, Double_t ymax, Int_t color)
-{
-  TLine *line = new TLine( xmin, ymin, xmax, ymax );
-  if ( !color )line->SetLineColor(kRed);
-  else line->SetLineColor(color);
-  line->SetLineWidth(2);
-  line->Draw("SAME");
-  gPad->Update();
-}
 
 // ====================================================================
-// // draw_cut_XX
-// // ====================================================================
-void Plot1::draw_horizontal_line( Double_t y, Double_t xmin, Double_t xmax, Int_t color )
+// draw_cut_XX
+// ====================================================================
+void Plot1::draw_horizontal_line( Double_t y, Double_t xmin, Double_t xmax, bool ndc, TLine *ln )
 {
   TLine *line = new TLine( xmin, y, xmax, y );
-  if ( !color ) line->SetLineColor(kRed);
-  else line->SetLineColor(color);
-  line->SetLineWidth(2);
+	if ( ndc ) line->SetNDC();
+  if ( ln ) 
+	{
+		line->SetLineColor( ln->GetLineColor() );
+  	line->SetLineWidth( ln->GetLineWidth() );
+		line->SetLineStyle( ln->GetLineStyle() );
+	}
+	else
+	{
+  	line->SetLineColor(kRed);
+  	line->SetLineWidth(2);
+		line->SetLineStyle(1);
+	}
   line->Draw("SAME");
   gPad->Update();
 }
 
-void Plot1::draw_vertical_line( Double_t x, Double_t ymin, Double_t ymax, Int_t color )
+void Plot1::draw_vertical_line( Double_t x, Double_t ymin, Double_t ymax, bool ndc, TLine *ln )
 {
   TLine *line = new TLine( x, ymin, x, ymax );
-  if ( !color ) line->SetLineColor(kRed);
-  else line->SetLineColor(color);
-  line->SetLineWidth(2);
+	if ( ndc ) line->SetNDC();
+	if ( ln )
+	{
+  	line->SetLineColor( ln->GetLineColor() );
+  	line->SetLineWidth( ln->GetLineWidth() );
+		line->SetLineStyle( ln->GetLineStyle() );
+	}
+	else	
+	{
+  	line->SetLineColor(kRed);
+  	line->SetLineWidth(2);
+  	line->SetLineStyle(1);
+	}
   line->Draw("SAME");
   gPad->Update();
 }
 
-void Plot1::draw_arrow( Double_t x1, Double_t y1, Double_t x2, Double_t y2, Int_t color, Float_t size, Option_t *kind )
+void Plot1::draw_arrow( Double_t x1, Double_t y1, Double_t x2, Double_t y2, Option_t *kind, bool ndc, TLine *ln )
 {
-  TArrow *arrow = new TArrow( x1, y1, x2, y2, size, kind );
-  if ( !color )
-  {
-    arrow->SetLineColor(kRed);
-    arrow->SetFillColor(kRed);
-  }
-  else
-  {
-    arrow->SetLineColor(color);
-    arrow->SetFillColor(color);
-  }
+  TArrow *arrow = new TArrow( x1, y1, x2, y2, 0.04, kind );
+	if ( ndc) arrow->SetNDC();
   arrow->SetAngle(30);
-  arrow->SetLineWidth(2);
+	if ( ln )
+	{
+  	arrow->SetLineColor( ln->GetLineColor() );
+  	arrow->SetFillColor( ln->GetLineColor() );
+  	arrow->SetLineWidth( ln->GetLineWidth() );
+		arrow->SetLineStyle( ln->GetLineStyle() );
+	}	
+	else
+	{
+  	arrow->SetLineColor(kRed);
+  	arrow->SetFillColor(kRed);
+  	arrow->SetLineWidth(2);
+  	arrow->SetLineStyle(1);
+	}	
   arrow->Draw();
   gPad->Update();
 }
 
-void Plot1::draw_cut_1L( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, Int_t color, Float_t size )
+void Plot1::draw_cut_1L( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, bool ndc, TLine *line)
 {
-  draw_vertical_line( xmax, ymin, ymax, color );
-  draw_arrow( xmin, ymax, xmax, ymax, color, size, "<" );
+  draw_vertical_line( xmax, ymin, ymax, ndc, line );
+  draw_arrow( xmin, ymax, xmax, ymax, "<", ndc, line );
   gPad->Update();
 }
 
-void Plot1::draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, Int_t color, Float_t size )
+void Plot1::draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, bool ndc, TLine *line )
 {
-  draw_vertical_line( xmin, ymin, ymax, color );
-  draw_arrow( xmin, ymax, xmax, ymax, color, size, ">" );
+  draw_vertical_line( xmin, ymin, ymax, ndc, line );
+  draw_arrow( xmin, ymax, xmax, ymax, ">", ndc, line );
   gPad->Update();
 }
+
 
 // ====================================================================
 // set_root_env
@@ -416,10 +429,10 @@ void Plot1::set_gradient_color()
 // ====================================================================
 // add_plot_label
 // ====================================================================
-void Plot1::add_plot_label( TString label, Double_t x, Double_t y, Double_t size, Int_t color, Int_t font, Int_t align, Double_t angle ){
-
+void Plot1::add_plot_label( TString label, Double_t x, Double_t y, Double_t size, Int_t color, Int_t font, Int_t align, Double_t angle, bool ndc)
+{
 	TLatex *latex = new TLatex( x, y, label );
-	latex->SetNDC();
+	if (ndc) latex->SetNDC();
 	latex->SetTextSize(size);
 	latex->SetTextColor(color);
 	latex->SetTextFont(font);
