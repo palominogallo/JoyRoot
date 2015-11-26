@@ -41,6 +41,9 @@ class Utils1 {
     static TH2D* getTH2D( TFile* file, TString name );
     static TProfile* getTProfile( TFile* file, TString name );
 
+		//! work  with TStrings
+		static void splitTwoTStrings( const TString a, TString &a1, TString &a2, TString token="," );
+
 };
 
 #endif

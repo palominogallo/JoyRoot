@@ -254,6 +254,16 @@ TProfile *Utils1::getTProfile( TFile* file, TString name )
   return h;
 }
 
+//==========================================================
+// splitTwoTStrings
+//==========================================================
+void Utils1::splitTwoTStrings( const TString a, TString &a1, TString &a2, TString token )
+{
+	TObjArray *x = a.Tokenize(token);
+	a1 = ( (TObjString*)x->At(0))->GetString();
+	a2 = ( (TObjString*)x->At(1))->GetString();
+}
+
 
 //#############################################
 
