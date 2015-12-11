@@ -62,6 +62,7 @@ using std::pair;
 #include <TText.h>
 #include <TStyle.h>
 #include <TRandom.h>
+#include <TRandom3.h>
 #include <TArrow.h>
 #include <TLine.h>
 #include <TMarker.h>
@@ -85,6 +86,8 @@ using std::pair;
 #include <TGraphAsymmErrors.h>
 #include <TGraphErrors.h>
 #include <TGraph2D.h>
+#include <TTreeReader.h>
+#include <TTreeReaderValue.h>
 #endif
 
 #endif
