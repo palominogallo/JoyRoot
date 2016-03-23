@@ -3,6 +3,8 @@
 
 #include "Plot1.hh"
 
+ClassImp(Plot1)
+
 Plot1::Plot1(){
 };
 
@@ -723,4 +725,3 @@ void Plot1::draw2Stat(const TH1F *h1, const TH1F *h2, Int_t Kolor1, Int_t Kolor2
 #endif
 
 //#############################################
-
