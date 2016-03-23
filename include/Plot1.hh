@@ -3,7 +3,7 @@
 
 #include "def.hh"
 
-class Plot1 {
+class Plot1 : public TObject {
 	public:
 
   	//! Default Constructor
@@ -52,6 +52,7 @@ class Plot1 {
     static void draw_cut_1L( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, bool ndc = true, TLine *line=NULL );
     static void draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, bool ndc = true, TLine *line=NULL );
 
+		ClassDef(Plot1,1); //to define class like TObject, id=1 shoule change if I changed the members
 };
 
 #endif

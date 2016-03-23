@@ -3,7 +3,8 @@
 
 #include "def.hh"
 
-class Utils1 {
+class Utils1 : public TObject 
+{
 	public:
 
   	//! Default Constructor
@@ -44,6 +45,7 @@ class Utils1 {
 		//! work  with TStrings
 		static void splitTwoTStrings( const TString a, TString &a1, TString &a2, TString token="," );
 
+		ClassDef(Utils1,1); //to define class like TObject, id=1 shoule change if I changed the members
 };
 
 #endif
