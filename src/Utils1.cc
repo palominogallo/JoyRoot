@@ -5,6 +5,8 @@
 //  return (i<j);
 //}
 
+ClassImp(Utils1)
+
 Utils1::Utils1()
 {
 }
