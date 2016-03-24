@@ -6,17 +6,18 @@ INCLUDE += -I$(JOYROOTROOT)/include
 LDFLAGS += -shared -Wl,-install_name
 #LDFLAGS += -shared -Wl,-soname
 
-OBJS = Plot1.o Utils1.o mydict.o
+OBJS = mydict.o Plot1.o Utils1.o 
 MYROOTDICT = mydict.cc
-MYROOTDICTH = mydict.h
+MYROOTDICTPCM = mydict_rdict.pcm
 MYROOTDICTHEADERS = $(JOYROOTROOT)/include/Plot1.hh $(JOYROOTROOT)/include/Utils1.hh $(JOYROOTROOT)/include/LinkDef.hh
 
 TARGET =libJOYROOT.so
 
-$(TARGET): $(OBJS)
+$(TARGET): $(OBJS) $(MYROOTDICT)
 	$(CXX) $(LDFLAGS),$(TARGET) -o $(TARGET) $(OBJS) $(ROOTLDFLAGS)
 	if [ ! -d ${JOYROOTROOT}/lib ]; then mkdir $(JOYROOTROOT)/lib; fi
 	ln -sf $(JOYROOTROOT)/src/$(TARGET) ${JOYROOTROOT}/lib/$(TARGET)
+	ln -sf $(JOYROOTROOT)/src/$(MYROOTDICTPCM) ${JOYROOTROOT}/lib/$(MYROOTDICTPCM)
 
 $(OBJS): %.o: %.cc
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@ 
@@ -25,8 +26,9 @@ $(MYROOTDICT): $(MYROOTDICTHEADERS)
 	rootcint -f $@ -c $(CXXFLAGS) $(INCLUDE) -p $^
 
 clean:
-	rm $(JOYROOTROOT)/lib/$(TARGET)
-	rm $(TARGET)
-	rm $(OBJS)
-	rm $(MYROOTDICT)
-	rm $(MYROOTDICTH)
+	rm -f $(JOYROOTROOT)/lib/$(TARGET)
+	rm -f $(JOYROOTROOT)/lib/$(MYROOTDICTPCM)
+	rm -f $(TARGET)
+	rm -f $(OBJS)
+	rm -f $(MYROOTDICT)
+	rm -f $(MYROOTDICTPCM)
