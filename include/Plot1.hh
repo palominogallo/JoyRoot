@@ -18,7 +18,7 @@ class Plot1 : public TObject {
 		static void drawprofile( const TProfile* hist, Int_t color = kRed-4 );
 		static void drawgausfit( const TH1* hist, Double_t min, Double_t max );
 		static void drawDgausfit( const TH1* hist, Double_t min, Double_t max );
-		static void set_axis( TH1 *h );
+		static void set_axis( TH1 *h, bool center_ytitle = false );
 		static void set_axis( TH2 *h );
 		static void set_axis( TProfile *h );
 		static void set_axis( TGraph *gr );
@@ -32,12 +32,12 @@ class Plot1 : public TObject {
     static TCanvas* getCanvas( TString name, TString title );
     static TCanvas* getCanvasSQ( TString name, TString title );
 
-    static TLegend* getLegend1TL( Float_t text_zize = 0.044 );
-    static TLegend* getLegend2TL( Float_t text_size = 0.044 );
-    static TLegend* getLegend3TL( Float_t text_size = 0.044 );
-    static TLegend* getLegend1TR( Float_t text_size = 0.044 );
-    static TLegend* getLegend2TR( Float_t text_size = 0.044 );
-    static TLegend* getLegend3TR( Float_t text_size = 0.044 );
+    static TLegend* getLegend1TL( Float_t text_zize = 0.044, Int_t text_font = 62 );
+    static TLegend* getLegend2TL( Float_t text_size = 0.044, Int_t text_font = 62 );
+    static TLegend* getLegend3TL( Float_t text_size = 0.044, Int_t text_font = 62 );
+    static TLegend* getLegend1TR( Float_t text_size = 0.044, Int_t text_font = 62 );
+    static TLegend* getLegend2TR( Float_t text_size = 0.044, Int_t text_font = 62 );
+    static TLegend* getLegend3TR( Float_t text_size = 0.044, Int_t text_font = 62 );
     static TLegend* getLegend2BL();
     static TLegend* getLegend2BR();
     static TLegend* getLegendTLDataMC();

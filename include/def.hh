@@ -40,7 +40,7 @@ const Int_t axis_label_font_z = 132;
 const Double_t title_size = 0.05;
 const Double_t axis_title_size_x = 0.06;
 const Double_t axis_title_size_y = 0.06;
-const Double_t axis_title_size_z = 0.04;
+const Double_t axis_title_size_z = 0.06;
 const Double_t axis_label_size = 0.045;
 const Double_t axis_label_size_z = 0.035;
 
