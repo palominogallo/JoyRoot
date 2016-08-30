@@ -6,10 +6,10 @@ The structure is C++.
 
 1. Change setup.csh or setup.sh according to your path
 2. Change on `src/Makefile` according to OS:
-```bash
-> LDFLAGS += -shared -Wl,-install_name #Mac OS X
-> DFLAGS += -shared -Wl,-soname #LINUX 
-```
+	```bash
+	> LDFLAGS += -shared -Wl,-install_name #Mac OS X
+	> DFLAGS += -shared -Wl,-soname #LINUX 
+	```
 3. Compile
 ```bash
 > make
@@ -23,7 +23,7 @@ The structure is C++.
 cd <work area> # i.e work_area
 python JoyRoot/scripts/makeAnaSkeleton.py work analysis Mass
 ```
-2. You will noticed a directory created with name you defined on previous step. And the class name `Mass` (the name is an example)
+2. You will noticed a directory created with name you defined on previous step and the class name `Mass` (the name is an example)
 Add the branches you want to work.
 
 ## Drawing plots
