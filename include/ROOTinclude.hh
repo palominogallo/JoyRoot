@@ -88,6 +88,7 @@ using std::pair;
 #include <TGraph2D.h>
 #include <TTreeReader.h>
 #include <TTreeReaderValue.h>
+#include <TTreeReaderArray.h>
 #endif
 
 #endif
