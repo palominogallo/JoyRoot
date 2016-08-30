@@ -2,10 +2,10 @@
 Set of tools to work with [ROOT](https://root.cern.ch/), to create better plots.
 The structure is C++.
 
-1. [Compilation](#Compilation)
-2. [Creating files for analysis](#Creating-files-for-analysis)
-3. [Drawing plots](#Drawing-plots)
-4. [Make Selector](#Make-Selector)
+1. [Compilation](#compilation)
+2. [Creating files for analysis](#creating-files-for-analysis)
+3. [Drawing plots](#drawing-plots)
+4. [Make Selector](#make-selector)
 
 ## Compilation
 
