@@ -4,13 +4,13 @@ The structure is C++.
 
 ## Compilation
 
-1. Change setup.csh or setup.sh according to your path
-2. Change on `src/Makefile` according to OS:
-	```bash
-	> LDFLAGS += -shared -Wl,-install_name #Mac OS X
-	> DFLAGS += -shared -Wl,-soname #LINUX 
-	```
-3. Compile
+1) Change setup.csh or setup.sh according to your path
+2) Change on `src/Makefile` according to OS:
+```bash
+> LDFLAGS += -shared -Wl,-install_name #Mac OS X
+> DFLAGS += -shared -Wl,-soname #LINUX 
+```
+3) Compile
 ```bash
 > make
 ```
@@ -18,12 +18,12 @@ The structure is C++.
 ## Creating files for analysis
 	This tool works with TTreereader structure (faster than old TBranch).
 
-1. Go to your work area, then run the python script to create you source and analysis files.
+1) Go to your work area, then run the python script to create you source and analysis files.
 ```bash
 cd <work area> # i.e work_area
 python JoyRoot/scripts/makeAnaSkeleton.py work analysis Mass
 ```
-2. You will noticed a directory created with name you defined on previous step and the class name `Mass` (the name is an example)
+2) You will noticed a directory created with name you defined on previous step and the class name `Mass` (the name is an example)
 Add the branches you want to work.
 
 ## Drawing plots
