@@ -3,6 +3,8 @@ Set of tools to work with [ROOT](https://root.cern.ch/), to create better plots.
 The structure is C++.
 
 1. [Compilation](#Compilation)
+2. [Creating files for analysis](#Creating files for analysis)
+3. [Drawing plots](#Drawing plots)
 
 ## Compilation
 
@@ -18,7 +20,7 @@ The structure is C++.
 ```
 
 ## Creating files for analysis
-	This tool works with TTreereader structure (faster than old TBranch).
+    This tool works with TTreereader structure (faster than old TBranch).
 
 1) Go to your work area, then run the python script to create you source and analysis files.
 ```bash
