@@ -2,10 +2,12 @@
 Set of tools to work with [ROOT](https://root.cern.ch/), to create better plots.
 The structure is C++.
 
+1. [Compilation](##Compilation)
+
 ## Compilation
 
-1) Change setup.csh or setup.sh according to your path
-2) Change on `src/Makefile` according to OS:
+1) Change `setup.csh` or `setup.sh` according to your path
+2) Modigy on `src/Makefile` according to your OS:
 ```bash
 > LDFLAGS += -shared -Wl,-install_name #Mac OS X
 > DFLAGS += -shared -Wl,-soname #LINUX 
