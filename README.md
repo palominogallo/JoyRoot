@@ -3,8 +3,9 @@ Set of tools to work with [ROOT](https://root.cern.ch/), to create better plots.
 The structure is C++.
 
 1. [Compilation](#Compilation)
-2. [Creating files for analysis](#Creating files for analysis)
-3. [Drawing plots](#Drawing plots)
+2. [Creating files for analysis](#Creating-files-for-analysis)
+3. [Drawing plots](#Drawing-plots)
+4. [Make Selector](#Make-Selector)
 
 ## Compilation
 
@@ -32,7 +33,7 @@ Add the branches you want to work.
 
 ## Drawing plots
 
-Call the function like static tools like:
+Call the function like static tools:
 ```C++
 Plot1::bookTH1F(,,);
 ```
@@ -41,4 +42,12 @@ and not like:
 Plot1 *p1;
 p1->bookTH1F(,,);
 ```
-
+## Make Selector
+We can use the make selector can help us to create our branches used by TTreereader.
+```bash
+root -l
+> TChain t("name of tree")
+> t.Add("roorfilename")
+> t.MakeSelector("temp") 
+```
+That will create `temp.c` and `temp.h` files,  copy and paste the branches inside `temp.h` into your class header.
