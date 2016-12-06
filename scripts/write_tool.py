@@ -49,5 +49,3 @@ def write_main( filepath, filename ):
     filem.write( "\t\t\tdefault  : showHelp(argv[0]);\n\t\t}\n\t}\n")
     filem.write( "\treturn %s(dirin, dirout);\n}" % filename )
     filem.close()
-
-

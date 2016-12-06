@@ -4,7 +4,7 @@ import sys, os
 import write_objects
 
 def make_skeleton():
-	workpath = sys.argv[1]	
+	workpath = sys.argv[1]
 	dirname = sys.argv[2]
 	classname = sys.argv[3]
 	os.system("mkdir -p %s/%s/{src,include,make_histos,make_plots,rootfiles,plots}" % (workpath, dirname) )
@@ -16,8 +16,8 @@ def make_skeleton():
 
 	joypath0 = sys.argv[0].split("/")
 	joypath0.remove("makeAnaSkeleton.py")
-	joypath0.remove("scripts")	
-	joypath = "/".join(joypath0)	
+	joypath0.remove("scripts")
+	joypath = "/".join(joypath0)
 	print "Joy dir: %s " % joypath
 	write_objects.write_setup(joypath, workpath, dirname )
 
@@ -29,6 +29,3 @@ if len(sys.argv) == 4:
 	make_skeleton()
 else:
 	showHelp()
-
-
-
