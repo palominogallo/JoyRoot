@@ -21,6 +21,7 @@
 
 
 using std::cout;
+using std::string;
 using std::cin;
 using std::endl;
 using std::flush;
@@ -89,6 +90,7 @@ using std::pair;
 #include <TTreeReader.h>
 #include <TTreeReaderValue.h>
 #include <TTreeReaderArray.h>
+#include <RooConstVar.h>
 #endif
 
 #endif
