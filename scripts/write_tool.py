@@ -1,3 +1,15 @@
+def write_top_class_file( filepath, filename, extension ):
+    filet = open(filepath+filename+"."+extension, 'w')
+    isclass =  "Histos" not in filename and "Plots" not in filename
+    if isclass:
+        filet.write("#ifndef %s_%s\n" % ( filename.upper(), extension.upper() ) )
+        filet.write("#define %s_%s\n\n" % ( filename.upper(), extension.upper() ) )
+    if extension == 'hh':
+        filet.write("#include <ROOTinclude.hh>\n")
+    if extension == 'cc' and isclass:
+        filet.write("#include \"%s.hh\"\n\n" % filename)
+    filet.close()
+
 def write_top_file( filepath, filename, extension ):
     filet = open(filepath+filename+"."+extension, 'w')
     isclass =  "Histos" not in filename and "Plots" not in filename
