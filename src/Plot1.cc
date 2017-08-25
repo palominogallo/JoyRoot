@@ -26,12 +26,12 @@ void Plot1::draw1histo( const TH1* hist, TString goption, TString pos )
 
 	if ( pos != "NO" )
 	{
-  	float x0 = .67, y0 = .75;
-  	if ( pos == "TR" ) x0 = .64;
+  	float x0 = .62, y0 = .75;
+  	if ( pos == "TR" ) x0 = .62;
   	else if ( pos == "TL" ) x0 = .1;
-  	add_plot_label( Form( "Mean = %.2f", htemp->GetMean() ), x0 , y0+.1, .041, kGray+3, 62, 12 );
- 	 	add_plot_label( Form( "RMS = %.2f", htemp->GetRMS() ), x0 , y0+.05, .041, kGray+3, 62, 12 );
-  	add_plot_label( Form( "Entries = %.0f", htemp->GetEntries() ), x0 , y0, .041, kGray+3, 62, 12);
+  	add_plot_label( Form( "Mean = %.2f", htemp->GetMean() ), x0 , y0+.1, .043, kGray+3, 62, 12 );
+ 	 	add_plot_label( Form( "RMS = %.2f", htemp->GetRMS() ), x0 , y0+.05, .043, kGray+3, 62, 12 );
+  	add_plot_label( Form( "Entries = %.0f", htemp->GetEntries() ), x0 , y0, .043, kGray+3, 62, 12);
 	}
 
 	gPad->Update();
