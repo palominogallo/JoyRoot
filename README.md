@@ -19,6 +19,15 @@ The structure is C++.
 ```bash
 > make
 ```
+4) cmake
+```bash
+mkdir JoyRoot-v1-0
+cd JoyRoot
+cmake -DCMAKE_INSTALL_PREFIX=../JoyRoot-v1-0 .
+make
+make install
+
+```
 
 ## Creating files for analysis
     This tool works with TTreereader structure (faster than old TBranch).
