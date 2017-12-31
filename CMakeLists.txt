@@ -23,7 +23,7 @@ target_link_libraries(JOYROOT ${ROOT_LIBRARIES})
 install(TARGETS JOYROOT LIBRARY DESTINATION lib)
 
 # Install the header files.
-install(FILES ${INCLUDES} DESTINATION include)
+install(FILES ${INCLUDES} DESTINATION include/JoyRoot)
 
 install(FILES ${CMAKE_SOURCE_DIR}/setup.sh DESTINATION .)
 
