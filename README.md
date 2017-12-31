@@ -2,31 +2,22 @@
 Set of tools to work with [ROOT](https://root.cern.ch/), to create better plots.
 The structure is C++.
 
-1. [Compilation](#compilation)
+1. [Installation](#Installation)
 2. [Creating files for analysis](#creating-files-for-analysis)
 3. [Drawing plots](#drawing-plots)
 4. [Make Selector](#make-selector)
 
-## Compilation
+## Installation
 
-1) Change `setup.csh` or `setup.sh` according to your path
-2) Modigy on `src/Makefile` according to your OS:
+Be sure you have cmake in your system.
+
 ```bash
-> LDFLAGS += -shared -Wl,-install_name #Mac OS X
-> DFLAGS += -shared -Wl,-soname #LINUX 
-```
-3) Compile
-```bash
-> make
-```
-4) cmake
-```bash
+git clone https://github.com/palominogallo/JoyRoot
 mkdir JoyRoot-v1-0
 cd JoyRoot
 cmake -DCMAKE_INSTALL_PREFIX=../JoyRoot-v1-0 .
 make
 make install
-
 ```
 
 ## Creating files for analysis
