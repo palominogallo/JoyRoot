@@ -4,7 +4,7 @@
 ___joyroot_root() {
     COUNT=10
     while true; do
-			if [ -e ./lib -a -d ./lib -a -e ./lib/libJOYROOT.dylib ]; then
+			if [ -e ./include -a -d ./include -a -e ./include/Plot1.hh ]; then
 				echo ${PWD}
 				return
 			fi
