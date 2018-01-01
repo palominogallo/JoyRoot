@@ -4,6 +4,11 @@ set(CMAKE_BUILD_TYPE Release)
 
 # Set the project name and version
 project(JOYROOT)
+set(VERSION_MAJOR "1")
+set(VERSION_MINOR "0")
+set(VERSION_PATCH "0")
+set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+message("-- JoyRoot -- ${VERSION}")
 
 find_package(ROOT REQUIRED)
 include(${ROOT_USE_FILE})
