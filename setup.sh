@@ -4,7 +4,7 @@
 ___joyroot_root() {
     COUNT=10
     while true; do
-			if [ -e ./include/JoyRoot -a -d ./include/JoyRoot -a -e ./include/JoyRoot/Plot1.hh ]; then
+			if [ -e ./include/joyroot -a -d ./include/joyroot -a -e ./include/joyroot/Plot1.hh ]; then
 				echo ${PWD}
 				return
 			fi
