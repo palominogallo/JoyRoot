@@ -14,12 +14,12 @@ find_package(ROOT REQUIRED)
 include(${ROOT_USE_FILE})
 include_directories(${ROOT_INCLUDE_DIRS})
 # necesary for ROOT_GENERATE_DICTIONARY
-include_directories(${CMAKE_SOURCE_DIR}/include/joyroot)
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
 #ROOT_GENERATE_DICTIONARY(G__joyroot
 # Plot1.hh Utils1.hh OPTIONS -inlineInputHeader LINKDEF ${CMAKE_SOURCE_DIR}/include/LinkDef.hh )
 ROOT_GENERATE_DICTIONARY(G__joyroot
- Plot1.hh Utils1.hh OPTIONS -inlineInputHeader LINKDEF include/LinkDef.hh )
+ joyroot/Plot1.hh joyroot/Utils1.hh OPTIONS -inlineInputHeader LINKDEF include/LinkDef.hh )
 
 file(GLOB SOURCES src/*.cc)
 file(GLOB INCLUDES include/joyroot/Plot1.hh include/joyroot/ROOTinclude.hh include/joyroot/Utils1.hh include/joyroot/def.hh)

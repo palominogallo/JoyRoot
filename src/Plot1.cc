@@ -1,7 +1,7 @@
 #ifndef PLOT1_CXX
 #define PLOT1_CXX 1
 
-#include "Plot1.hh"
+#include "joyroot/Plot1.hh"
 
 ClassImp(Plot1)
 
