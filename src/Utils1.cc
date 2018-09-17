@@ -160,10 +160,52 @@ Float_t Utils1::getMedian( const TH1 *h1 )
 
 //==========================================================
 //==========================================================
+//! operation between Histograms
+//==========================================================
+//==========================================================
+//==========================================================
+// getAdd
+//==========================================================
+Bool_t Utils1::getAdd( TH1 *h1, const TH1 *h2, Double_t c1 )
+{
+  Int_t nbins = h1->GetNbinsX();
+  if ( nbins  != h2->GetNbinsX() )
+  {
+    std::cerr << "\n " << h1->GetName() << " and  " << h2->GetName();
+    std::cerr << " have not the same binning in Utils::getAdd " << std::endl;
+    return false;
+  }
+  for ( Int_t i = 1; i <= nbins; i++)
+  {
+    h1->SetBinContent( i, h1->GetBinContent(i)+c1*h2->GetBinContent(i) );
+    h1->SetBinError( i, sqrt(pow(h1->GetBinError(i),2) + pow(c1*h2->GetBinError(i),2)) );
+  }
+  return true;
+}
+//==========================================================
+// normConst
+//==========================================================
+Bool_t Utils1::scaleHisto( TH1 *h1, Double_t c1, Bool_t redoError )
+{
+  Int_t nbins = h1->GetNbinsX();
+  if ( c1 == 0 )
+  {
+    std::cerr << " \n normalization factor is 0" << std::endl;
+    return false;
+  }
+  for ( Int_t i = 1; i <= nbins; i++)
+  {
+    h1->SetBinContent( i, h1->GetBinContent(i)*c1 );
+    if( redoError ) h1->SetBinError( i, sqrt(h1->GetBinContent(i)) );
+    else h1->SetBinError(i, h1->GetBinError(i)*c1 );
+  }
+  return true;
+}
+//==========================================================
+//==========================================================
 //! Histograms
 //==========================================================
 //==========================================================
-
 //==========================================================
 // bookTH1F
 //==========================================================
@@ -268,4 +310,3 @@ void Utils1::splitTwoTStrings( const TString a, TString &a1, TString &a2, TStrin
 
 
 //#############################################
-

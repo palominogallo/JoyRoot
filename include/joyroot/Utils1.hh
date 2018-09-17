@@ -3,7 +3,7 @@
 
 #include "def.hh"
 
-class Utils1 : public TObject 
+class Utils1 : public TObject
 {
 	public:
 
@@ -28,6 +28,10 @@ class Utils1 : public TObject
     static Float_t getMedian( const TH1 *h1 );
     static Bool_t getFloatMedian( std::vector<Float_t> &v, Float_t &median );
 
+		//! operanbtion Histograms
+		static Bool_t getAdd( TH1 *h, const TH1 *h2, Double_t c1);
+		static Bool_t scaleHisto( TH1 *h1, Double_t c1, Bool_t redoError=true );
+
     //! Book histo
     static TH1F* bookTH1F( TString name, TString title, Int_t nbins, Float_t xmin, Float_t xmax, Bool_t binSize=true );
     static TH1D* bookTH1D( TString name, TString title, Int_t nbins, Float_t xmin, Float_t xmax, Bool_t binSize=true );
@@ -45,9 +49,7 @@ class Utils1 : public TObject
 		//! work  with TStrings
 		static void splitTwoTStrings( const TString a, TString &a1, TString &a2, TString token="," );
 
-		ClassDef(Utils1,1); //to define class like TObject, id=1 shoule change if I changed the members
+		ClassDef(Utils1,2); //to define class like TObject, id=1 shoule change if I changed the members
 };
 
 #endif
-
-
