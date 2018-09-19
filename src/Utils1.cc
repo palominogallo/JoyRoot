@@ -122,6 +122,28 @@ Float_t Utils1::getRelativeDifference( const TH1 *h1, const TH1 *h2, Float_t &Er
 
   return Relative;
 }
+
+//==========================================================
+// getRelativeDifference
+//==========================================================
+Float_t Utils1::getRelativeDifference( Float_t a, Float_t b, Float_t &ratio_err )
+{
+  //a- b /a
+  Float_t a_err=  sqrt(fabs(a));
+  Float_t b_err=  sqrt(fabs(b));
+  Float_t diff = a - b;
+  Float_t diff_err = sqrt(pow(a_err,2)+pow(b_err,2));
+  Float_t ratio = diff / a;
+  if ( diff != 0 )
+    ratio_err = ratio*sqrt( pow(diff_err/diff,2)+pow(a_err/a,2) );
+  else
+    ratio_err = 0;
+
+  if ( isnan(ratio_err) ) cout << a <<  " " << b << endl;
+
+  return ratio;
+}
+
 //==========================================================
 // getDifference
 //==========================================================

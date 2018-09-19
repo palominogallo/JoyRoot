@@ -27,6 +27,36 @@ void Plot1::drawStatsNumbers( const TH1* hist, TString pos )
   	add_plot_label( Form( "Entries = %.0f", hist->GetEntries() ), x0 , y0, .043, kGray+3, 62, 12);
 	}
 }
+//==========================================================
+// draw 1d histo with error bands
+//==========================================================
+void Plot1::draw1histoEBand( const TH1* hist  )
+{
+	TH1* htemp = (TH1*)hist->Clone(hist->GetName());
+	TH1* htop = (TH1*)hist->Clone();
+	TH1* hbot = (TH1*)hist->Clone();
+	htop->SetFillStyle(3008);
+	htop->SetFillColor(htemp->GetLineColor());
+	htop->SetLineWidth(1);
+	hbot->SetLineWidth(1);
+	hbot->SetFillColor(10);
+	Int_t nbins = htemp->GetNbinsX();
+
+	for ( int i = 1; i <= nbins; i ++)
+	{
+		htop->SetBinContent(i, htemp->GetBinContent(i) + htemp->GetBinError(i) );
+		hbot->SetBinContent(i, htemp->GetBinContent(i) - htemp->GetBinError(i) );
+	}
+
+  set_axis(htemp);
+	htemp->DrawCopy(" hist");
+	htop->DrawCopy("A hist same");
+	hbot->DrawCopy("hist same");
+
+	gPad->Update();
+	delete htemp;
+}
+
 
 //==========================================================
 // draw common options histo
@@ -38,7 +68,7 @@ void Plot1::draw1histo( const TH1* hist, TString goption, TString pos )
 	htemp->SetLineWidth(2);
 	htemp->SetFillColor(kAzure-8);
   set_axis(htemp);
-	htemp->DrawCopy(goption);	
+	htemp->DrawCopy(goption);
   add_histo_title( Form("%s", htemp->GetTitle() ) );
 	drawStatsNumbers( hist, pos );
 
@@ -54,9 +84,9 @@ void Plot1::draw2histo( const TH2* hist, TString goption){
 	TH2* tmp = (TH2*)hist->Clone("tmp");
 	tmp->SetLineWidth(2);
  	set_axis(tmp);
-	tmp->DrawCopy(goption);	
+	tmp->DrawCopy(goption);
 	gPad->Update();
-	
+
 	delete tmp;
 
 }
@@ -75,17 +105,17 @@ void Plot1::drawprofile( const TProfile* hist, Int_t color){
 	tmp->GetXaxis()->SetTitleSize(0.05); //- size axis title
 	tmp->GetYaxis()->CenterTitle(kTRUE);
 	tmp->GetYaxis()->SetTitleSize(0.05); //- size axis title
-	tmp->DrawCopy();	
+	tmp->DrawCopy();
 
 	gPad->Update();
-	
+
 	delete tmp;
 
 }
 /*void Plot1::drawpoissonfit( const TH1* hist, Double_t min, Double_t max){
 
   TF1 *pois = new TF1( "pois", "poissonf", min, max );
-  pois->SetLineWidth(3); 
+  pois->SetLineWidth(3);
   pois->SetLineColor(kRed);
 	pois->SetParName(0, "Constant A");
   pois->SetParName(1, "Mean     A");
@@ -101,7 +131,7 @@ void Plot1::drawgausfit( const TH1* hist, Double_t min, Double_t max  ){
   g1->SetParName(1, "Mean     A");
   g1->SetParName(2, "Sigma    A");
 
-	
+
 	TH1F *tfit = (TH1F*)hist->Clone("tfit");
 	tfit->Fit(g1,"RQ");
 
@@ -135,11 +165,11 @@ void Plot1::drawDgausfit( const TH1* hist, Double_t min, Double_t max )
 	TF1 *dgaus = new TF1("dgaus","gaus(0) + gaus(3)",min,max); dgaus->SetLineWidth(3); dgaus->SetLineColor(kBlack);
 
 	Double_t par[3], parD[6];
-	
+
 	TH1F *hfit = (TH1F*)hist->Clone("tfit");
 	hfit->Fit(g,"QR","goff");
 	g->GetParameters(&par[0]);
-	
+
 	dgaus->SetParameter(0,par[0]);
 	dgaus->SetParameter(1,par[1]);
 	dgaus->SetParameter(2,par[2]);
@@ -199,7 +229,7 @@ void Plot1::set_axis( TH1 *h, bool center_ytitle )
 		h->GetYaxis()->SetLabelSize(def::axis_label_size);
 		h->GetXaxis()->CenterTitle(true);
 		if(center_ytitle) h->GetYaxis()->CenterTitle(true);
-}	
+}
 
 void Plot1::set_axis( TH2 *h )
 {
@@ -269,7 +299,7 @@ void Plot1::draw_horizontal_line( Double_t y, Double_t xmin, Double_t xmax, bool
 {
   TLine *line = new TLine( xmin, y, xmax, y );
 	if ( ndc ) line->SetNDC();
-  if ( ln ) 
+  if ( ln )
 	{
 		line->SetLineColor( ln->GetLineColor() );
   	line->SetLineWidth( ln->GetLineWidth() );
@@ -295,7 +325,7 @@ void Plot1::draw_vertical_line( Double_t x, Double_t ymin, Double_t ymax, bool n
   	line->SetLineWidth( ln->GetLineWidth() );
 		line->SetLineStyle( ln->GetLineStyle() );
 	}
-	else	
+	else
 	{
   	line->SetLineColor(kRed);
   	line->SetLineWidth(2);
@@ -316,14 +346,14 @@ void Plot1::draw_arrow( Double_t x1, Double_t y1, Double_t x2, Double_t y2, Opti
   	arrow->SetFillColor( ln->GetLineColor() );
   	arrow->SetLineWidth( ln->GetLineWidth() );
 		arrow->SetLineStyle( ln->GetLineStyle() );
-	}	
+	}
 	else
 	{
   	arrow->SetLineColor(kRed);
   	arrow->SetFillColor(kRed);
   	arrow->SetLineWidth(2);
   	arrow->SetLineStyle(1);
-	}	
+	}
   arrow->Draw();
   gPad->Update();
 }

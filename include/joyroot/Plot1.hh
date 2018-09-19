@@ -14,6 +14,7 @@ class Plot1 : public TObject {
 
 	public:
 		static void drawStatsNumbers( const TH1* hist, TString pos="TR");
+		static void draw1histoEBand( const TH1* hist  );
 		static void draw1histo( const TH1* hist, TString goption="HISTO", TString pos="TR" );
 		static void draw2histo( const TH2* hist, TString goption="colz" );
 		static void drawprofile( const TProfile* hist, Int_t color = kRed-4 );
@@ -57,5 +58,3 @@ class Plot1 : public TObject {
 };
 
 #endif
-
-
