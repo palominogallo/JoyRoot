@@ -34,12 +34,10 @@ class Plot1 : public TObject {
     static TCanvas* getCanvas( TString name, TString title );
     static TCanvas* getCanvasSQ( TString name, TString title );
 
-    static TLegend* getLegend1TL( Float_t text_zize = 0.044, Int_t text_font = 62 );
-    static TLegend* getLegend2TL( Float_t text_size = 0.044, Int_t text_font = 62 );
-    static TLegend* getLegend3TL( Float_t text_size = 0.044, Int_t text_font = 62 );
-    static TLegend* getLegend1TR( Float_t text_size = 0.044, Int_t text_font = 62 );
-    static TLegend* getLegend2TR( Float_t text_size = 0.044, Int_t text_font = 62 );
-    static TLegend* getLegend3TR( Float_t text_size = 0.044, Int_t text_font = 62 );
+    static TLegend* getLegendTL( Int_t size = 1, Float_t text_zize = 0.044, Int_t text_font = 62 );
+    static TLegend* getSQLegendTL( Int_t size = 1, Float_t text_zize = 0.044, Int_t text_font = 62 );
+    static TLegend* getLegendTR( Int_t size = 1, Float_t text_size = 0.044, Int_t text_font = 62 );
+    static TLegend* getSQLegendTR( Int_t size = 1, Float_t text_size = 0.044, Int_t text_font = 62 );
     static TLegend* getLegend2BL();
     static TLegend* getLegend2BR();
     static TLegend* getLegendTLDataMC();

@@ -510,61 +510,50 @@ TCanvas* Plot1::getCanvasSQ(TString name, TString title)
 }
 
 //==========================================================
-// Legend Top Right
+// getLegend
 //==========================================================
-TLegend* Plot1::getLegend1TR( Float_t text_size, Int_t text_font )
+TLegend *Plot1::getSQLegendTR( Int_t size, Float_t text_size, Int_t text_font )
 {
-  Double_t x1 = 0.8;
-  Double_t y1 = 0.8;
-  Double_t x2 = 1 - gStyle->GetPadRightMargin() - 0.002;
-  Double_t y2 = 1 - gStyle->GetPadTopMargin() - 0.005;
-  TLegend* legend = new TLegend(x1,y1,x2,y2);
-  legend->SetFillColor(kWhite);
-  legend->SetLineColor(kBlack);
-  legend->SetTextSize(text_size);
-  legend->SetTextFont(text_font);
-  return legend;
+	assert( size <= 6 );
+	Float_t x[] = {0.85,0.80,0.75,0.70,0.65,0.60};
+	Float_t y[] = {0.85,0.80,0.75,0.70,0.65,0.60};
+	Float_t x1 = x[size-1];
+	Float_t y1 = y[size-1];
+	Float_t x2 = 1 - gStyle->GetPadRightMargin() - 0.001;
+	Float_t y2 = 1 - gStyle->GetPadTopMargin()   - 0.001;
+	TLegend* legend = new TLegend(x1,y1,x2,y2);
+	legend->SetFillColor(kWhite);
+	legend->SetLineColor(kBlack);
+	legend->SetTextSize(text_size);
+	legend->SetTextFont(text_font);
+	return legend;
 }
-//==========================================================
-// Legend Top Left
-//==========================================================
-TLegend* Plot1::getLegend1TL( Float_t text_size, Int_t text_font )
+
+TLegend *Plot1::getLegendTR( Int_t size, Float_t text_size, Int_t text_font )
 {
-  Double_t x1 = gStyle->GetPadLeftMargin() + 0.0007;
-  Double_t y1 = 0.80;
-  Double_t x2 = 0.20;
-  Double_t y2 = 1 - gStyle->GetPadTopMargin() - 0.01;
-  TLegend* legend = new TLegend(x1,y1,x2,y2);
-  legend->SetFillColor(kWhite);
-  legend->SetLineColor(kBlack);
-  legend->SetTextSize(text_size);
-  legend->SetTextFont(text_font);
-  return legend;
+	assert( size <= 4 );
+	Float_t x[] = {0.75,0.70,0.65,0.60};
+	Float_t y[] = {0.85,0.80,0.75,0.70};
+	Float_t x1 = x[size-1];
+	Float_t y1 = y[size-1];
+	Float_t x2 = 1 - gStyle->GetPadRightMargin() - 0.001;
+	Float_t y2 = 1 - gStyle->GetPadTopMargin()   - 0.001;
+	TLegend* legend = new TLegend(x1,y1,x2,y2);
+	legend->SetFillColor(kWhite);
+	legend->SetLineColor(kBlack);
+	legend->SetTextSize(text_size);
+	legend->SetTextFont(text_font);
+	return legend;
 }
-//==========================================================
-// Legend Top Right
-//==========================================================
-TLegend* Plot1::getLegend2TR( Float_t text_size, Int_t text_font )
+
+TLegend* Plot1::getSQLegendTL( Int_t size, Float_t text_size, Int_t text_font )
 {
-  Double_t x1 = 0.7;
-  Double_t y1 = 0.70;
-  Double_t x2 = 1 - gStyle->GetPadRightMargin() - 0.001;
-  Double_t y2 = 1 - gStyle->GetPadTopMargin() - 0.001;
-  TLegend* legend = new TLegend(x1,y1,x2,y2);
-  legend->SetFillColor(kWhite);
-  legend->SetLineColor(kBlack);
-  legend->SetTextSize(text_size);
-  legend->SetTextFont(text_font);
-  return legend;
-}
-//==========================================================
-// Legend Top Left
-//==========================================================
-TLegend* Plot1::getLegend2TL( Float_t text_size, Int_t text_font )
-{
+	assert( size <= 6 );
+	Float_t x[] = {0.15,0.20,0.25,0.30,0.35,0.40};
+	Float_t y[] = {0.85,0.80,0.75,0.70,0.65,0.60};
   Double_t x1 = gStyle->GetPadLeftMargin() + 0.001;
-  Double_t y1 = 0.7;
-  Double_t x2 = 0.32;
+  Double_t y1 = y[size-1];
+  Double_t x2 = x[size-1];
   Double_t y2 = 1 - gStyle->GetPadTopMargin() - 0.001;
   TLegend* legend = new TLegend(x1,y1,x2,y2);
   legend->SetFillColor(kWhite);
@@ -574,32 +563,15 @@ TLegend* Plot1::getLegend2TL( Float_t text_size, Int_t text_font )
   return legend;
 }
 
-
-//==========================================================
-// Legend Top Right
-//==========================================================
-TLegend* Plot1::getLegend3TR( Float_t text_size, Int_t text_font )
+TLegend* Plot1::getLegendTL( Int_t size, Float_t text_size, Int_t text_font )
 {
-  Double_t x1 = 0.6;
-  Double_t y1 = 0.6;
-  Double_t x2 = 1 - gStyle->GetPadRightMargin() - 0.002;
-  Double_t y2 = 1 - gStyle->GetPadTopMargin() - 0.005;
-  TLegend* legend = new TLegend(x1,y1,x2,y2);
-  legend->SetFillColor(kWhite);
-  //legend->SetLineColor(kBlack);
-  legend->SetTextSize(text_size);
-  legend->SetTextFont(text_font);
-  return legend;
-}
-//==========================================================
-//// Legend Top Left
-////==========================================================
-TLegend* Plot1::getLegend3TL( Float_t text_size, Int_t text_font )
-{
-  Double_t x1 = gStyle->GetPadLeftMargin() + 0.0005;
-  Double_t y1 = 0.60;
-  Double_t x2 = 0.40;
-  Double_t y2 = 1 - gStyle->GetPadTopMargin() - 0.002;
+	assert( size <= 4 );
+	Float_t x[] = {0.25,0.30,0.35,0.40};
+	Float_t y[] = {0.85,0.80,0.75,0.70};
+  Double_t x1 = gStyle->GetPadLeftMargin() + 0.001;
+  Double_t y1 = y[size-1];
+  Double_t x2 = x[size-1];
+  Double_t y2 = 1 - gStyle->GetPadTopMargin() - 0.001;
   TLegend* legend = new TLegend(x1,y1,x2,y2);
   legend->SetFillColor(kWhite);
   legend->SetLineColor(kBlack);
@@ -608,9 +580,6 @@ TLegend* Plot1::getLegend3TL( Float_t text_size, Int_t text_font )
   return legend;
 }
 
-//==========================================================
-// Legend Bottom Left
-//==========================================================
 TLegend* Plot1::getLegend2BL()
 {
   Double_t x1 = gStyle->GetPadLeftMargin() + 0.001;
@@ -624,9 +593,6 @@ TLegend* Plot1::getLegend2BL()
   return legend;
 }
 
-//==========================================================
-// Legend Bottom Right
-//==========================================================
 TLegend* Plot1::getLegend2BR()
 {
   Double_t x2 = 1 - gStyle->GetPadRightMargin() + 0.001 - 0.02;
