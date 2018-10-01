@@ -376,7 +376,7 @@ void Plot1::draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t y
 // ====================================================================
 // set_root_env
 // ====================================================================
-void Plot1::set_root_env()
+void Plot1::set_root_env(Int_t maxdigits)
 {
 	//gStyle->SetOptStat("nmre");
 	gStyle->SetOptStat(000);
@@ -407,7 +407,7 @@ void Plot1::set_root_env()
 	gStyle->SetTitleFont(22);
 	gStyle->SetTitleBorderSize(2);
 
-	TGaxis::SetMaxDigits(4);
+	TGaxis::SetMaxDigits(maxdigits);
 }
 
 // ====================================================================

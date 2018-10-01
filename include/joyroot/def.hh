@@ -33,7 +33,7 @@ const Int_t ratio_color = 1;
 //-- font settings
 const Int_t title_font = 102; // courier bold
 const Int_t axis_title_font_x = 62; //bold
-const Int_t axis_title_font_y = 72; //bold
+const Int_t axis_title_font_y = 22; //bold
 const Int_t axis_title_font_z = 32; // italic
 const Int_t axis_label_font = 42;
 const Int_t axis_label_font_z = 132;

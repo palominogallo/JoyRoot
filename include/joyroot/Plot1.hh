@@ -25,7 +25,7 @@ class Plot1 : public TObject {
 		static void set_axis( TProfile *h );
 		static void set_axis( TGraph *gr );
 		static void set_axis( THStack *gr );
-		static void set_root_env();
+		static void set_root_env( Int_t maxdigits = 4);
 		static void set_root_stats();
 		static void set_gradient_color();
 		static void add_histo_title( TString title, Double_t my_title_size = 0.05, Int_t my_title_font = 62 );
