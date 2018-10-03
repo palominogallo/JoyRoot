@@ -531,13 +531,15 @@ TLegend *Plot1::getSQLegendTR( Int_t size, Float_t text_size, Int_t text_font )
 
 TLegend *Plot1::getLegendTR( Int_t size, Float_t text_size, Int_t text_font )
 {
-	assert( size <= 4 );
-	Float_t x[] = {0.75,0.70,0.65,0.60};
-	Float_t y[] = {0.85,0.80,0.75,0.70};
-	Float_t x1 = x[size-1];
-	Float_t y1 = y[size-1];
-	Float_t x2 = 1 - gStyle->GetPadRightMargin() - 0.001;
-	Float_t y2 = 1 - gStyle->GetPadTopMargin()   - 0.001;
+	assert( size <= 6 );
+	Float_t top = 1 - gStyle->GetPadTopMargin()-0.0001;
+	Float_t right = 1 - gStyle->GetPadRightMargin() - 0.0001;
+	Float_t xshift[] = {0.25,0,30,0.35,0.40,0.45,0.50};
+	Float_t yshift[] = {0.10,0.15,0.20,0.25,0.30,0.35};
+	Float_t x1 = right-xshift[size-1];
+	Float_t y1 = top-yshift[size-1];
+	Float_t x2 = right;
+	Float_t y2 = top;
 	TLegend* legend = new TLegend(x1,y1,x2,y2);
 	legend->SetFillColor(kWhite);
 	legend->SetLineColor(kBlack);
@@ -565,13 +567,15 @@ TLegend* Plot1::getSQLegendTL( Int_t size, Float_t text_size, Int_t text_font )
 
 TLegend* Plot1::getLegendTL( Int_t size, Float_t text_size, Int_t text_font )
 {
-	assert( size <= 4 );
-	Float_t x[] = {0.25,0.30,0.35,0.40};
-	Float_t y[] = {0.85,0.80,0.75,0.70};
-  Double_t x1 = gStyle->GetPadLeftMargin() + 0.001;
-  Double_t y1 = y[size-1];
-  Double_t x2 = x[size-1];
-  Double_t y2 = 1 - gStyle->GetPadTopMargin() - 0.001;
+	assert( size <= 6 );
+	Float_t top = 1 - gStyle->GetPadTopMargin()-0.0001;
+	Float_t left = gStyle->GetPadLeftMargin()  +0.0001;
+	Float_t xshift[] = {0.25,0,30,0.35,0.40,0.45,0.50};
+	Float_t yshift[] = {0.10,0.15,0.20,0.25,0.30,0.35};
+  Double_t x1 = left;
+  Double_t y1 = top-yshift[size-1];
+  Double_t x2 = left+xshift[size-1];
+  Double_t y2 = top;
   TLegend* legend = new TLegend(x1,y1,x2,y2);
   legend->SetFillColor(kWhite);
   legend->SetLineColor(kBlack);

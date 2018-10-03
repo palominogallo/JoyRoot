@@ -25,6 +25,8 @@ class Utils1 : public TObject
     static Double_t getErrorMeansRatio( TH1F *h1,  TH1F *h2 );
     static Float_t getRelativeDifference( const TH1 *h1, const TH1 *h2, Float_t &Error );
     static Float_t getRelativeDifference( Float_t a, Float_t b, Float_t &Error );
+		static Float_t getRatio( Float_t a, Float_t b, Float_t &ratio_err );
+
     static Float_t getDifference( const TH1 *h1, const TH1 *h2, Float_t &Error );
     static Float_t getMedian( const TH1 *h1 );
     static Bool_t getFloatMedian( std::vector<Float_t> &v, Float_t &median );
