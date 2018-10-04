@@ -534,12 +534,14 @@ TLegend *Plot1::getLegendTR( Int_t size, Float_t text_size, Int_t text_font )
 	assert( size <= 6 );
 	Float_t top = 1 - gStyle->GetPadTopMargin()-0.0001;
 	Float_t right = 1 - gStyle->GetPadRightMargin() - 0.0001;
-	Float_t xshift[] = {0.25,0,30,0.35,0.40,0.45,0.50};
+	Float_t xshift[] = {0.25,0.30,0.35,0.40,0.45,0.50};
 	Float_t yshift[] = {0.10,0.15,0.20,0.25,0.30,0.35};
 	Float_t x1 = right-xshift[size-1];
 	Float_t y1 = top-yshift[size-1];
 	Float_t x2 = right;
 	Float_t y2 = top;
+	cout << right << " " << xshift[size-1] << endl;
+	cout << x1 << " " << y1 << " " << x2 << " " << y2 << endl;
 	TLegend* legend = new TLegend(x1,y1,x2,y2);
 	legend->SetFillColor(kWhite);
 	legend->SetLineColor(kBlack);
@@ -570,7 +572,7 @@ TLegend* Plot1::getLegendTL( Int_t size, Float_t text_size, Int_t text_font )
 	assert( size <= 6 );
 	Float_t top = 1 - gStyle->GetPadTopMargin()-0.0001;
 	Float_t left = gStyle->GetPadLeftMargin()  +0.0001;
-	Float_t xshift[] = {0.25,0,30,0.35,0.40,0.45,0.50};
+	Float_t xshift[] = {0.25,0.30,0.35,0.40,0.45,0.50};
 	Float_t yshift[] = {0.10,0.15,0.20,0.25,0.30,0.35};
   Double_t x1 = left;
   Double_t y1 = top-yshift[size-1];
