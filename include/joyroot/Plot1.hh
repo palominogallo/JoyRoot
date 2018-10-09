@@ -32,7 +32,7 @@ class Plot1 : public TObject {
 		static void add_plot_label( TString label, Double_t x, Double_t y, Double_t size = 0.05, Int_t color = 1, Int_t font = 62, Int_t align = 22, Double_t angle = 0, bool ndc = true );
 
     static TCanvas* getCanvas( TString name, TString title );
-    static TCanvas* getCanvasSQ( TString name, TString title );
+    static TCanvas* getSQCanvas( TString name, TString title );
 
     static TLegend* getLegendTL( Int_t size = 1, Float_t text_zize = 0.044, Int_t text_font = 62 );
     static TLegend* getSQLegendTL( Int_t size = 1, Float_t text_zize = 0.044, Int_t text_font = 62 );

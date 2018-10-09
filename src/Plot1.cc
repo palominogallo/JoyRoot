@@ -503,7 +503,7 @@ TCanvas* Plot1::getCanvas(TString name, TString title)
 //==========================================================
 // Square Canvas
 //==========================================================
-TCanvas* Plot1::getCanvasSQ(TString name, TString title)
+TCanvas* Plot1::getSQCanvas(TString name, TString title)
 {
   TCanvas *canvas = new TCanvas(name, title, 600, 600);
   return canvas;
