@@ -32,6 +32,7 @@ class Plot1 : public TObject {
 		static void add_plot_label( TString label, Double_t x, Double_t y, Double_t size = 0.05, Int_t color = 1, Int_t font = 62, Int_t align = 22, Double_t angle = 0, bool ndc = true );
 
     static TCanvas* getCanvas( TString name, TString title );
+    static TCanvas* getSPCanvas( TString name, TString title );
     static TCanvas* getSQCanvas( TString name, TString title );
 
     static TLegend* getLegendTL( Int_t size = 1, Float_t text_zize = 0.044, Int_t text_font = 62 );
@@ -51,6 +52,7 @@ class Plot1 : public TObject {
     static void draw_arrow( Double_t x1, Double_t y1, Double_t x2, Double_t y2, Option_t *kind="|>", bool ndc=true, TLine *line=NULL );
     static void draw_cut_1L( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, bool ndc = true, TLine *line=NULL );
     static void draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t ymax, bool ndc = true, TLine *line=NULL );
+		static void draw_straight_band( Double_t xmin, Double_t xmax, Double_t y, Double_t width );
 
 		ClassDef(Plot1,1); //to define class like TObject, id=1 shoule change if I changed the members
 };

@@ -372,6 +372,40 @@ void Plot1::draw_cut_1R( Double_t xmin, Double_t ymin, Double_t xmax, Double_t y
   gPad->Update();
 }
 
+void Plot1::draw_straight_band( Double_t xmin, Double_t xmax, Double_t ycentral, Double_t width )
+{
+	const Int_t nsteps = 20;
+	Double_t step = (xmax-xmin)/nsteps;
+	Double_t x[nsteps], y[nsteps], ymin[nsteps], ymax[nsteps];
+	for ( int i = 0; i < nsteps; i++ )
+	{
+		x[i]    = xmin+i*step;
+		y[i]    = ycentral;
+		ymin[i] = ycentral - width;
+		ymax[i] = ycentral + width;
+	}
+	TGraph *grmin = new TGraph(nsteps,x,ymin);
+	TGraph *grmax = new TGraph(nsteps,x,ymax);
+	TGraph *gr    = new TGraph(nsteps,x,y);
+	TGraph *grshade = new TGraph(2*nsteps);
+	for ( int i = 0; i < nsteps; i++ )
+	{
+		 grshade->SetPoint(i,x[i],ymax[i]);
+		 grshade->SetPoint(nsteps+i,x[nsteps-i-1],ymin[nsteps-i-1]);
+	}
+	grshade->SetFillStyle(3013);
+	grshade->SetFillColor(16);
+	grshade->Draw("f same");
+	grmin->Draw("l same ");
+	grmax->Draw("l same");
+	gr->SetLineWidth(4);
+	gr->SetMarkerColor(4);
+	gr->SetMarkerStyle(21);
+	gr->Draw("C same");
+	gPad->Update();
+
+}
+
 
 // ====================================================================
 // set_root_env
@@ -495,17 +529,22 @@ void Plot1::add_histo_title( TString title, Double_t my_title_size, Int_t my_tit
 //==========================================================
 // Normal Canvas
 //==========================================================
-TCanvas* Plot1::getCanvas(TString name, TString title)
+TCanvas* Plot1::getCanvas( TString name, TString title )
 {
-  TCanvas *canvas = new TCanvas(name, title, 600, 500 );
+  TCanvas *canvas = new TCanvas(name, title, 700, 600 );
   return canvas;
 }
-//==========================================================
-// Square Canvas
-//==========================================================
-TCanvas* Plot1::getSQCanvas(TString name, TString title)
+
+TCanvas* Plot1::getSPCanvas( TString name, TString title )
 {
-  TCanvas *canvas = new TCanvas(name, title, 600, 600);
+	if ( !title )
+		title = name;
+  return new TCanvas(name, title, 700, 650 );
+}
+
+TCanvas* Plot1::getSQCanvas( TString name, TString title )
+{
+  TCanvas *canvas = new TCanvas(name, title, 700, 700);
   return canvas;
 }
 
