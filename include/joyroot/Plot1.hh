@@ -20,8 +20,8 @@ class Plot1 : public TObject {
 		static void drawprofile( const TProfile* hist, Int_t color = kRed-4 );
 		static void drawgausfit( const TH1* hist, Double_t min, Double_t max );
 		static void drawDgausfit( const TH1* hist, Double_t min, Double_t max );
-		static void set_axis( TH1 *h, bool center_ytitle = false );
-		static void set_axis( TH2 *h );
+		static void set_axis( TH1 *h, bool center_xtitle = true, bool center_ytitle = false );
+		static void set_axis( TH2 *h, bool center_xtitle = true, bool center_ytitle = false );
 		static void set_axis( TProfile *h );
 		static void set_axis( TGraph *gr );
 		static void set_axis( THStack *gr );

@@ -217,7 +217,7 @@ void Plot1::drawDgausfit( const TH1* hist, Double_t min, Double_t max )
 // ====================================================================
 // set_axis
 // ====================================================================
-void Plot1::set_axis( TH1 *h, bool center_ytitle )
+void Plot1::set_axis( TH1 *h, bool center_xtitle, bool center_ytitle )
 {
 		h->GetXaxis()->SetTitleFont(def::axis_title_font_x);
 		h->GetYaxis()->SetTitleFont(def::axis_title_font_y);
@@ -227,11 +227,11 @@ void Plot1::set_axis( TH1 *h, bool center_ytitle )
 		h->GetYaxis()->SetLabelFont(def::axis_label_font);
 		h->GetXaxis()->SetLabelSize(def::axis_label_size);
 		h->GetYaxis()->SetLabelSize(def::axis_label_size);
-		h->GetXaxis()->CenterTitle(true);
+		if(center_xtitle) h->GetXaxis()->CenterTitle(true);
 		if(center_ytitle) h->GetYaxis()->CenterTitle(true);
 }
 
-void Plot1::set_axis( TH2 *h )
+void Plot1::set_axis( TH2 *h, bool center_xtitle, bool center_ytitle )
 {
 	h->GetXaxis()->SetTitleFont(def::axis_title_font_x);
 	h->GetYaxis()->SetTitleFont(def::axis_title_font_y);
@@ -246,8 +246,8 @@ void Plot1::set_axis( TH2 *h )
 	h->GetXaxis()->SetLabelSize(def::axis_label_size);
 	h->GetYaxis()->SetLabelSize(def::axis_label_size);
 	h->GetZaxis()->SetLabelSize(def::axis_label_size_z);
-	h->GetXaxis()->CenterTitle(true);
-	h->GetYaxis()->CenterTitle(true);
+	if(center_xtitle) h->GetXaxis()->CenterTitle(true);
+	if(center_ytitle) h->GetYaxis()->CenterTitle(true);
 }
 
 void Plot1::set_axis( TProfile *h )
