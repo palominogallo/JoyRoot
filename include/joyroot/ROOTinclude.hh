@@ -90,6 +90,7 @@ using std::pair;
 #include <TTreeReader.h>
 #include <TTreeReaderValue.h>
 #include <TTreeReaderArray.h>
+#include <TObjString.h>
 //#include <RooConstVar.h>
 #endif
 
