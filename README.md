@@ -14,10 +14,9 @@ Be sure you have cmake in your system.
 ```bash
 git clone https://github.com/palominogallo/JoyRoot
 mkdir JoyRoot-v1-0
-cd JoyRoot
-cmake -DCMAKE_INSTALL_PREFIX=../JoyRoot-v1-0 .
-make
-make install
+cd JoyRoot-v1-0
+cmake ../JoyRoot
+cmake --build .
 ```
 
 ## Creating files for analysis
